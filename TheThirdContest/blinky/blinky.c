@@ -93,15 +93,15 @@ void UartReceive(void)
 {
       if(UartRecStart == 0)
         {
-            StartFlag=UARTCharGet(UART1_BASE);
+            StartFlag=UARTCharGet(UART5_BASE);
             if(StartFlag==0x0d)
                 UartRecStart = 1;
         }
         if(UartRecStart == 1)
         {
             for(i=0;i<16;i++)
-                RxBuffer[i] = UARTCharGet(UART1_BASE);
-             StartFlag=UARTCharGet(UART1_BASE);
+                RxBuffer[i] = UARTCharGet(UART5_BASE);
+             StartFlag=UARTCharGet(UART5_BASE);
             if(StartFlag==0x0a)
                 UartRecStart = 2;
         }
@@ -116,20 +116,30 @@ void DataManage()
 {
     uint32_t Res0,Res1,Res2,Res3;
     double Output0,Output1,Output2;
-    Res0 = (uint32_t)(RxBuffer[0] << 24) | (uint32_t)(RxBuffer[1] << 16) | (uint32_t)(RxBuffer[2] << 8) | (uint32_t)(RxBuffer[3] );
-    Res1 = (uint32_t)(RxBuffer[4] << 24) | (uint32_t)(RxBuffer[5] << 16) | (uint32_t)(RxBuffer[6] << 8) | (uint32_t)(RxBuffer[7] );
-    Res2 = (uint32_t)(RxBuffer[8] << 24) | (uint32_t)(RxBuffer[9] << 16) | (uint32_t)(RxBuffer[10] << 8) | (uint32_t)(RxBuffer[11] );
-    Res3 = (uint32_t)(RxBuffer[12] << 24) | (uint32_t)(RxBuffer[13] << 16) | (uint32_t)(RxBuffer[14] << 8) | (uint32_t)(RxBuffer[15] );
+    uint8_t x='\"',f=0xff,s='%';
+    Res0 = (uint32_t)(RxBuffer[3] << 24) | (uint32_t)(RxBuffer[2] << 16) | (uint32_t)(RxBuffer[1] << 8) | (uint32_t)(RxBuffer[0] );
+   Res1 = (uint32_t)(RxBuffer[7] << 24) | (uint32_t)(RxBuffer[6] << 16) | (uint32_t)(RxBuffer[5] << 8) | (uint32_t)(RxBuffer[4] );
+    Res2 = (uint32_t)(RxBuffer[11] << 24) | (uint32_t)(RxBuffer[10] << 16) | (uint32_t)(RxBuffer[9] << 8) | (uint32_t)(RxBuffer[8] );
+    Res3 = (uint32_t)(RxBuffer[15] << 24) | (uint32_t)(RxBuffer[14] << 16) | (uint32_t)(RxBuffer[13] << 8) | (uint32_t)(RxBuffer[12] );
     
-    Output0 = (double) Res0/1.0;
-    Output1 = (double) Res3/Res1;
-    Output2 = (double) Res2/Res1;
+//    Res1 *= 10^5;
+//    Res2 *= 10^2;
     
-    printf("%.3f\r\n",Output0);
-    printf("%.3f\r\n",Output1);
-    printf("%.3f\r\n",Output2);
+    Output0 = (double) Res1/Res0;
+    Output1 = (double) Res2/Res0;
+    Output2 = (double) Res3/100;
+    
+    Output0 *=100000;
+    Output1 *=100;
+    Output1 -= 0.03;
+    printf("t0.txt=%c%.3fkHZ%c%c%c%c",x,Output0,x,f,f,f);
+    printf("t1.txt=%c%.2f%c%c%c%c%c",x,Output1,s,x,f,f,f);
+    printf("t2.txt=%c%.3fus%c%c%c%c",x,Output2,x,f,f,f);
+    
+
     
     UartRecFlag = 0;
+    SysCtlDelay(10290);
 }
 void
 ConfigureUART(void)
@@ -139,11 +149,13 @@ ConfigureUART(void)
     //
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
     //
     // Enable UART0
     //
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART5);
     //
     // Configure GPIO Pins for UART mode.
     //
@@ -151,8 +163,11 @@ ConfigureUART(void)
     ROM_GPIOPinConfigure(GPIO_PA1_U0TX);
     ROM_GPIOPinConfigure(GPIO_PB0_U1RX);
     ROM_GPIOPinConfigure(GPIO_PB1_U1TX);    
+    ROM_GPIOPinConfigure(GPIO_PE4_U5RX);
+    ROM_GPIOPinConfigure(GPIO_PE5_U5TX);      
     ROM_GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
     ROM_GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    ROM_GPIOPinTypeUART(GPIO_PORTE_BASE, GPIO_PIN_4 | GPIO_PIN_5);    
 
     //
     // Use the internal 16MHz oscillator as the UART clock source.
@@ -164,9 +179,12 @@ ConfigureUART(void)
     //
     UARTStdioConfig(0, 115200, 16000000);
     
-    UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),115200,
+    UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),9600,
                                               (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
                                               UART_CONFIG_PAR_NONE));
+    UARTConfigSetExpClk(UART5_BASE,SysCtlClockGet(),115200,
+                                              (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
+                                              UART_CONFIG_PAR_NONE));    
 }
 
 
@@ -189,12 +207,14 @@ int main(void)
 	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
     //´®¿ÚÊä³ö
      printf("START!\n");
+    UARTprintf("Hello");
 	while(1)
 	{
         while(!UartRecFlag)
             UartReceive();
         while(UartRecFlag)
             DataManage();
+        
 	}
 	
 }
