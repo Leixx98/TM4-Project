@@ -36,11 +36,12 @@ __error__(char *pcFilename, uint32_t ui32Line)
 #endif
 
 int32_t t;
-uint8_t RxBuffer[24];
+uint8_t RxBuffer[60];
 uint8_t UartRecStart=0;                             //开始接收数据标志位
 uint8_t i,StartFlag;                                                   //for循环用
 uint8_t Array_Count;                                //接收的字节数
 uint8_t UartRecFlag;                                  //串口接收标志位
+uint8_t Array_count;                                    //找寻数据头用
 //*****************************************************************************
 //
 // Delay for the specified number of seconds.  Depending upon the current
@@ -99,16 +100,24 @@ void UartReceive(void)
         }
         if(UartRecStart == 1)
         {
-            for(i=0;i<16;i++)
+            for(i=0;i<60;i++)
                 RxBuffer[i] = UARTCharGet(UART5_BASE);
-             StartFlag=UARTCharGet(UART5_BASE);
-            if(StartFlag==0x0a)
-                UartRecStart = 2;
+            while(StartFlag!=0x0a)
+                StartFlag=UARTCharGet(UART5_BASE);
+            UartRecStart = 2;
         }
         if(UartRecStart == 2)
         {
             UartRecStart = 0;
             UartRecFlag =  1;
+            for(i=0;i<60;i++)
+            {
+                if(RxBuffer[i] == 0x0a &&  RxBuffer[i+1] == 0x0d)
+                {
+                    Array_Count = i+2;   
+                    break;
+                }
+            }
         }
 }
 
@@ -117,14 +126,19 @@ void DataManage()
     uint32_t Res0,Res1,Res2,Res3;
     double Output0,Output1,Output2;
     uint8_t x='\"',f=0xff,s='%';
-    Res0 = (uint32_t)(RxBuffer[3] << 24) | (uint32_t)(RxBuffer[2] << 16) | (uint32_t)(RxBuffer[1] << 8) | (uint32_t)(RxBuffer[0] );
-    Res1 = (uint32_t)(RxBuffer[7] << 24) | (uint32_t)(RxBuffer[6] << 16) | (uint32_t)(RxBuffer[5] << 8) | (uint32_t)(RxBuffer[4] );
-    Res2 = (uint32_t)(RxBuffer[11] << 24) | (uint32_t)(RxBuffer[10] << 16) | (uint32_t)(RxBuffer[9] << 8) | (uint32_t)(RxBuffer[8] );
-    Res3 = (uint32_t)(RxBuffer[15] << 24) | (uint32_t)(RxBuffer[14] << 16) | (uint32_t)(RxBuffer[13] << 8) | (uint32_t)(RxBuffer[12] );
     
-//    Res1 *= 10^5;
-//    Res2 *= 10^2;
+//    for(i=0;i<16;i++)
+//    {
+//        UARTprintf("%x ",RxBuffer[Array_Count-1]);
+//        Array_Count++;
+//    }
     
+    Res0 = (uint32_t)(RxBuffer[Array_Count+3] << 24) | (uint32_t)(RxBuffer[Array_Count+2] << 16) | (uint32_t)(RxBuffer[Array_Count+1] << 8) | (uint32_t)(RxBuffer[Array_Count] );
+    Res1 = (uint32_t)(RxBuffer[Array_Count+7] << 24) | (uint32_t)(RxBuffer[Array_Count+6] << 16) | (uint32_t)(RxBuffer[Array_Count+5] << 8) | (uint32_t)(RxBuffer[Array_Count+4] );
+    Res2 = (uint32_t)(RxBuffer[Array_Count+11] << 24) | (uint32_t)(RxBuffer[Array_Count+10] << 16) | (uint32_t)(RxBuffer[Array_Count+9] << 8) | (uint32_t)(RxBuffer[Array_Count+8] );
+    Res3 = (uint32_t)(RxBuffer[Array_Count+15] << 24) | (uint32_t)(RxBuffer[Array_Count+14] << 16) | (uint32_t)(RxBuffer[Array_Count+13] << 8) | (uint32_t)(RxBuffer[Array_Count+12] );
+    
+   
     Output0 = (double) Res1/Res0;
     Output1 = (double) Res2/Res0;
     Output2 = (double) Res3/100;
@@ -132,6 +146,7 @@ void DataManage()
     Output0 *=100000;
     Output1 *=100;
     Output1 -= 0.03;
+    
     printf("t0.txt=%c%.3fkHZ%c%c%c%c",x,Output0,x,f,f,f);
     printf("t1.txt=%c%.2f%c%c%c%c%c",x,Output1,s,x,f,f,f);
     printf("t2.txt=%c%.3fus%c%c%c%c",x,Output2,x,f,f,f);
@@ -139,7 +154,6 @@ void DataManage()
 
     
     UartRecFlag = 0;
-    SysCtlDelay(10000);
 }
 void
 ConfigureUART(void)

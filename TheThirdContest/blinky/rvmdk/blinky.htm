@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\blinky.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\blinky.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Mar 28 15:52:54 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Mar 28 17:25:54 2018
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -75,9 +75,8 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>SysCtlDelay</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, sysctl.o(.emb_text))
 <BR><BR>[Calls]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockSet
-<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DataManage
+<BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockSet
+<LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
 </UL>
 
 <P><STRONG><a name="[b]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text))
@@ -220,14 +219,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1e]"></a>DataManage</STRONG> (Thumb, 376 bytes, Stack size 96 bytes, blinky.o(i.DataManage))
+<P><STRONG><a name="[1e]"></a>DataManage</STRONG> (Thumb, 444 bytes, Stack size 96 bytes, blinky.o(i.DataManage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = DataManage &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -328,7 +326,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTvprintf
 </UL>
 
-<P><STRONG><a name="[29]"></a>UartReceive</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, blinky.o(i.UartReceive))
+<P><STRONG><a name="[29]"></a>UartReceive</STRONG> (Thumb, 194 bytes, Stack size 8 bytes, blinky.o(i.UartReceive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = UartReceive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTCharGet
