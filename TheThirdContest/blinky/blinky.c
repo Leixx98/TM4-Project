@@ -118,7 +118,7 @@ void DataManage()
     double Output0,Output1,Output2;
     uint8_t x='\"',f=0xff,s='%';
     Res0 = (uint32_t)(RxBuffer[3] << 24) | (uint32_t)(RxBuffer[2] << 16) | (uint32_t)(RxBuffer[1] << 8) | (uint32_t)(RxBuffer[0] );
-   Res1 = (uint32_t)(RxBuffer[7] << 24) | (uint32_t)(RxBuffer[6] << 16) | (uint32_t)(RxBuffer[5] << 8) | (uint32_t)(RxBuffer[4] );
+    Res1 = (uint32_t)(RxBuffer[7] << 24) | (uint32_t)(RxBuffer[6] << 16) | (uint32_t)(RxBuffer[5] << 8) | (uint32_t)(RxBuffer[4] );
     Res2 = (uint32_t)(RxBuffer[11] << 24) | (uint32_t)(RxBuffer[10] << 16) | (uint32_t)(RxBuffer[9] << 8) | (uint32_t)(RxBuffer[8] );
     Res3 = (uint32_t)(RxBuffer[15] << 24) | (uint32_t)(RxBuffer[14] << 16) | (uint32_t)(RxBuffer[13] << 8) | (uint32_t)(RxBuffer[12] );
     
@@ -139,7 +139,7 @@ void DataManage()
 
     
     UartRecFlag = 0;
-    SysCtlDelay(10290);
+    SysCtlDelay(10000);
 }
 void
 ConfigureUART(void)
