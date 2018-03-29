@@ -121,7 +121,8 @@ void UartReceive(void)
         }
 }
 
-void DataManage()
+//数据处理函数
+void DataManage()                                                   
 {
     uint32_t Res0,Res1,Res2,Res3;
     double Output0,Output1,Output2;
@@ -142,14 +143,22 @@ void DataManage()
     Output0 = (double) Res1/Res0;
     Output1 = (double) Res2/Res0;
     Output2 = (double) Res3/100;
-    
-    Output0 *=100000;
+     
+    Output0 *=100000;                    //频率值预处理
+    if(Output0 < 1)                            //不足1kHz
+    {
+        Output0 *= 1000;
+         printf("t0.txt=%c%.3fHZ%c%c%c%c",x,Output0,x,f,f,f);
+    }
+    else                                            //大于1kHz
+         printf("t0.txt=%c%.3fkHz%c%c%c%c",x,Output0,x,f,f,f);
     Output1 *=100;
+        printf("t1.txt=%c%.2f%c%c%c%c%c",x,Output1,s,x,f,f,f);
     Output1 -= 0.03;
-    
-    printf("t0.txt=%c%.3fkHZ%c%c%c%c",x,Output0,x,f,f,f);
-    printf("t1.txt=%c%.2f%c%c%c%c%c",x,Output1,s,x,f,f,f);
-    printf("t2.txt=%c%.3fus%c%c%c%c",x,Output2,x,f,f,f);
+        printf("t2.txt=%c%.3fus%c%c%c%c",x,Output2,x,f,f,f);
+
+
+
     
 
     
