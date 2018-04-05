@@ -1,0 +1,11 @@
+.\rvmdk\sort.o: utils\sort.c
+.\rvmdk\sort.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\rvmdk\sort.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\rvmdk\sort.o: ..\blinky\inc/hw_types.h
+.\rvmdk\sort.o: ..\blinky\inc/hw_memmap.h
+.\rvmdk\sort.o: ..\blinky\inc/hw_gpio.h
+.\rvmdk\sort.o: ..\blinky\driverlib/sysctl.h
+.\rvmdk\sort.o: ..\blinky\driverlib/rom.h
+.\rvmdk\sort.o: ..\blinky\driverlib/pin_map.h
+.\rvmdk\sort.o: ..\blinky\driverlib/gpio.h
+.\rvmdk\sort.o: ..\blinky\utils/sort.h

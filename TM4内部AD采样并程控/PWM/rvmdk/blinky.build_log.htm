@@ -1,0 +1,43 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: lei xiangxing, njupt, LIC=BL28T-R203R-C22L6-D4D6I-2AWN1-3ADPS
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
+Toolchain Path:  D:\MDK5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DCM.DLL V1.13.1.0
+Target DLL:      lmidk-agdi.dll V???
+Dialog DLL:      TCM.DLL V1.14.4.0
+ 
+<h2>Project:</h2>
+D:\MDK C\PWM\blinky.uvproj
+Project File Date:  12/08/2016
+
+<h2>Output:</h2>
+Rebuild target 'blinky'
+compiling blinky.c...
+assembling startup_rvmdk.S...
+compiling uartstdio.c...
+utils\uartstdio.c(28): error:  #5: cannot open source input file "inc/hw_ints.h": No such file or directory
+  #include "inc/hw_ints.h"
+utils\uartstdio.c: 0 warnings, 1 error
+compiling buttons.c...
+utils\buttons.c(27): error:  #5: cannot open source input file "inc/hw_types.h": No such file or directory
+  #include "inc/hw_types.h"
+utils\buttons.c: 0 warnings, 1 error
+".\rvmdk\blinky.axf" - 2 Error(s), 0 Warning(s).
+Target not created.
+</pre>
+</body>
+</html>
