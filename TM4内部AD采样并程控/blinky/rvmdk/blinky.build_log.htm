@@ -21,24 +21,26 @@ Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-F:\Data\2018校赛及培训\第三次积分赛\TM4内部AD采样并程控\blinky\blinky.uvproj
+F:\Data\Github\TM4andFPGA\TM4内部AD采样并程控\blinky\blinky.uvproj
 Project File Date:  04/05/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'blinky'
 assembling startup_rvmdk.S...
-compiling uartstdio.c...
 compiling blinky.c...
-blinky.c(88): warning:  #177-D: variable "i"  was declared but never referenced
-    uint8_t i,Gain=1;           
-blinky.c: 1 warning, 0 errors
+blinky.c(122): warning:  #177-D: variable "x"  was declared but never referenced
+    uint8_t x='\"',f=0xff;
+blinky.c(122): warning:  #177-D: variable "f"  was declared but never referenced
+    uint8_t x='\"',f=0xff;
+blinky.c: 2 warnings, 0 errors
+compiling uartstdio.c...
 compiling buttons.c...
 linking...
-Program Size: Code=3436 RO-data=1204 RW-data=8 ZI-data=512  
+Program Size: Code=9104 RO-data=820 RW-data=16 ZI-data=536  
 After Build - User command #1: fromelf --bin --output .\rvmdk\blinky.bin .\rvmdk\blinky.axf
-".\rvmdk\blinky.axf" - 0 Error(s), 1 Warning(s).
-Build Time Elapsed:  00:00:02
+".\rvmdk\blinky.axf" - 0 Error(s), 2 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

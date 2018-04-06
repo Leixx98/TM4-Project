@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include "math.h"
 #include "inc/hw_ints.h"
 #include "inc/hw_memmap.h"
 #include "inc/hw_nvic.h"
@@ -39,28 +41,59 @@ int32_t t;
 // Configure the UART and its pins.  This must be called before UARTprintf().
 //
 //*****************************************************************************
+uint8_t UART_Buffer[20];
+uint8_t Array_Count;
+
+int fputc(int ch, FILE *f)
+{
+  UARTCharPut(UART1_BASE,(uint8_t)ch);
+  return ch;
+}
+
 void
 UART0Configure(void)
 {
 	// πƒ‹UART0
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-	// πƒ‹GPIOA
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-	UARTClockSourceSet(UART0_BASE,UART_CLOCK_PIOSC);
-	//≈‰÷√UART1“˝Ω≈
-	GPIOPinConfigure(GPIO_PA0_U0RX);
-	GPIOPinConfigure(GPIO_PA1_U0TX);
-	GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);	
-	//≈‰÷√UART1œ‡πÿ≤Œ ˝
-//	UARTConfigSetExpClk(UART1_BASE, SysCtlClockGet(),115200,
-//											(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-//												UART_CONFIG_PAR_NONE));
-//	// πƒ‹UART1÷–∂œ
-//	IntEnable(INT_UART1);
-//  UARTIntEnable(UART1_BASE, UART_INT_RX | UART_INT_RT);	
-//	//UART1◊¢≤·÷–∂œ
-//	UARTIntRegister(UART0_BASE, UART1IntHandler);
-	UARTStdioConfig(0,115200,16000000);
+    // Enable the GPIO Peripheral used by the UART.
+    //
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
+    //
+    // Enable UART0
+    //
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART5);
+    //
+    // Configure GPIO Pins for UART mode.
+    //
+    ROM_GPIOPinConfigure(GPIO_PA0_U0RX);
+    ROM_GPIOPinConfigure(GPIO_PA1_U0TX);
+    ROM_GPIOPinConfigure(GPIO_PB0_U1RX);
+    ROM_GPIOPinConfigure(GPIO_PB1_U1TX);    
+    ROM_GPIOPinConfigure(GPIO_PE4_U5RX);
+    ROM_GPIOPinConfigure(GPIO_PE5_U5TX);      
+    ROM_GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    ROM_GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+    ROM_GPIOPinTypeUART(GPIO_PORTE_BASE, GPIO_PIN_4 | GPIO_PIN_5);    
+
+    //
+    // Use the internal 16MHz oscillator as the UART clock source.
+    //
+    UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);
+
+    //
+    // Initialize the UART for console I/O.
+    //
+    UARTStdioConfig(0, 115200, 16000000);
+    
+    UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),9600,
+                                              (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
+                                              UART_CONFIG_PAR_NONE));
+    UARTConfigSetExpClk(UART5_BASE,SysCtlClockGet(),115200,
+                                              (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
+                                              UART_CONFIG_PAR_NONE));    
 }
 
 void AD8253PinConfig()
@@ -83,9 +116,10 @@ void AD8253PinConfig()
 //÷˜∫Ø ˝
 int main(void)
 {	
-  uint32_t ADC_Value=1,ADC_LasValue=0;
+  uint32_t ADC_Value=1,ADC_LasValue=0,Temp;
   //forÂæ™ÁéØÁî®ÂíåÊîπÂèòÂ¢ûÁõäÊ†áÂøó‰Ωç  
-  uint8_t i,Gain=1;           
+  uint8_t i,Gain=1;       
+  uint8_t x='\"',f=0xff;
 //	char low,high;
 //	char b=0xff;
 	//…Ë÷√ ±÷”
@@ -100,7 +134,6 @@ int main(void)
 	// πƒ‹ADC0
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
     
-	//µ„¡¡¿∂µ∆
     AD8253PinConfig();
 	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1);
 	GPIOPinTypeADC(GPIO_PORTE_BASE,GPIO_PIN_7);
@@ -115,6 +148,36 @@ int main(void)
 //	ADCIntClear(ADC0_BASE,0);
 	while(1)
 	{
+          
+        if(UARTCharsAvail(UART1_BASE))
+        {
+                while(UART_Buffer[Array_Count]!=0x0d)
+                {
+                    Array_Count++;
+                    UART_Buffer[Array_Count] = UARTCharGet(UART1_BASE);
+                }
+                if(UART_Buffer[1]==0x0a)
+                {
+                    Temp = UART_Buffer[2];
+                }
+                else if(UART_Buffer[1]==0x0b)
+                {
+                    for(i=0;i<Array_Count;i++)
+                    {
+                      if(UART_Buffer[i]>47)
+                            Temp+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
+                    }
+                }
+                
+                UARTprintf("%d\r\n",Temp);     
+                UARTCharPut(UART5_BASE,0x01);
+                UARTCharPut(UART5_BASE,Temp>>8);
+                UARTCharPut(UART5_BASE,Temp&0xff);
+                Array_Count = 0;Temp=0;
+        }
+        
+        
+          
         while(ADC_Value!=ADC_LasValue)
         {
                 ADC_LasValue = ADC_Value;
@@ -125,8 +188,8 @@ int main(void)
 				ADCIntClear(ADC0_BASE,0);
 				ADCSequenceDataGet(ADC0_BASE, 0, &ADC_Value );
 				ADC_Value =ADC_Value*825>>10;
-        }
-		UARTprintf(" %dmV ",ADC_Value);     
+        }   
+            
         if(Gain==1&&ADC_Value<130)
          {
              Gain = 10;
@@ -140,6 +203,8 @@ int main(void)
             GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,0);
             GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
          }
+         
+        UARTprintf(" %dmV ",ADC_Value);  
         ADC_Value = true;ADC_LasValue = false;
 				SysCtlDelay(SysCtlClockGet()/5);
         
