@@ -116,7 +116,7 @@ void AD8253PinConfig()
 //÷˜∫Ø ˝
 int main(void)
 {	
-  uint32_t ADC_Value=1,ADC_LasValue=0,Temp;
+  uint32_t ADC_Value=1,ADC_LasValue=0,Temp,N0Val;
   //forÂæ™ÁéØÁî®ÂíåÊîπÂèòÂ¢ûÁõäÊ†áÂøó‰Ωç  
   uint8_t i,Gain=1;       
   uint8_t x='\"',f=0xff;
@@ -157,9 +157,7 @@ int main(void)
                     UART_Buffer[Array_Count] = UARTCharGet(UART1_BASE);
                 }
                 if(UART_Buffer[1]==0x0a)
-                {
-                    Temp = UART_Buffer[2];
-                }
+                        Temp = (uint16_t)(UART_Buffer[3]<<8)|(uint16_t)(UART_Buffer[2]);
                 else if(UART_Buffer[1]==0x0b)
                 {
                     for(i=0;i<Array_Count;i++)
@@ -174,6 +172,9 @@ int main(void)
                 UARTCharPut(UART5_BASE,Temp>>8);
                 UARTCharPut(UART5_BASE,Temp&0xff);
                 Array_Count = 0;Temp=0;
+                if(UARTCharsAvail(UART1_BASE))
+                    Temp=UARTCharGet(UART1_BASE);
+                Temp=0;
         }
         
         
@@ -204,7 +205,7 @@ int main(void)
             GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
          }
          
-        UARTprintf(" %dmV ",ADC_Value);  
+ //       UARTprintf(" %dmV ",ADC_Value);  
         ADC_Value = true;ADC_LasValue = false;
 				SysCtlDelay(SysCtlClockGet()/5);
         
