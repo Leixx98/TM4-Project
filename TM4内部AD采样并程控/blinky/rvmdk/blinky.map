@@ -40,6 +40,7 @@ Section Cross References
     blinky.o(i.main) refers to adc.o(i.ADCSequenceDataGet) for ADCSequenceDataGet
     blinky.o(i.main) refers to sysctl.o(i.SysCtlClockGet) for SysCtlClockGet
     blinky.o(i.main) refers to sysctl.o(.emb_text) for SysCtlDelay
+    blinky.o(i.main) refers to uartstdio.o(i.UARTprintf) for UARTprintf
     blinky.o(i.main) refers to blinky.o(.bss) for .bss
     blinky.o(i.main) refers to blinky.o(.data) for .data
     startup_rvmdk.o(RESET) refers to startup_rvmdk.o(STACK) for StackMem
@@ -519,9 +520,6 @@ Removing Unused input sections from the image.
     Removing startup_rvmdk.o(.text), (0 bytes).
     Removing uartstdio.o(i.UARTgetc), (24 bytes).
     Removing uartstdio.o(i.UARTgets), (132 bytes).
-    Removing uartstdio.o(i.UARTprintf), (18 bytes).
-    Removing uartstdio.o(i.UARTvprintf), (436 bytes).
-    Removing uartstdio.o(i.UARTwrite), (60 bytes).
     Removing buttons.o(i.ButtonsInit), (100 bytes).
     Removing buttons.o(i.ButtonsPoll), (88 bytes).
     Removing buttons.o(.data), (3 bytes).
@@ -718,7 +716,7 @@ Removing Unused input sections from the image.
     Removing dneg.o(.text), (6 bytes).
     Removing cdcmple.o(.text), (48 bytes).
 
-203 unused section(s) (total 8314 bytes) removed from the image.
+200 unused section(s) (total 7800 bytes) removed from the image.
 
 ==============================================================================
 
@@ -732,43 +730,43 @@ Image Symbol Table
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
-    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixui.o ABSOLUTE
-    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  dfltui.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
     ../fplib/microlib/fpneg.c                0x00000000   Number         0  dneg.o ABSOLUTE
     ../fplib/microlib/fpscalb.c              0x00000000   Number         0  dscalb.o ABSOLUTE
@@ -780,8 +778,8 @@ Image Symbol Table
     ../mathlib/pow.c                         0x00000000   Number         0  pow_x.o ABSOLUTE
     ../mathlib/pow.c                         0x00000000   Number         0  pow.o ABSOLUTE
     ../mathlib/qnan.c                        0x00000000   Number         0  qnan.o ABSOLUTE
-    ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt.o ABSOLUTE
     ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt_x.o ABSOLUTE
+    ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt.o ABSOLUTE
     adc.c                                    0x00000000   Number         0  adc.o ABSOLUTE
     blinky.c                                 0x00000000   Number         0  blinky.o ABSOLUTE
     cdcmple.s                                0x00000000   Number         0  cdcmple.o ABSOLUTE
@@ -857,48 +855,51 @@ Image Symbol Table
     i.UARTClockSourceSet                     0x00001066   Section        0  uart.o(i.UARTClockSourceSet)
     i.UARTConfigSetExpClk                    0x0000106c   Section        0  uart.o(i.UARTConfigSetExpClk)
     i.UARTStdioConfig                        0x000010dc   Section        0  uartstdio.o(i.UARTStdioConfig)
-    i.__0printf                              0x00001138   Section        0  printfa.o(i.__0printf)
-    i.__ARM_fpclassify                       0x00001158   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i.__hardfp_pow                           0x00001188   Section        0  pow.o(i.__hardfp_pow)
-    i.__kernel_poly                          0x00001dd8   Section        0  poly.o(i.__kernel_poly)
-    i.__mathlib_dbl_divzero                  0x00001ed0   Section        0  dunder.o(i.__mathlib_dbl_divzero)
-    i.__mathlib_dbl_infnan2                  0x00001f00   Section        0  dunder.o(i.__mathlib_dbl_infnan2)
-    i.__mathlib_dbl_invalid                  0x00001f18   Section        0  dunder.o(i.__mathlib_dbl_invalid)
-    i.__mathlib_dbl_overflow                 0x00001f38   Section        0  dunder.o(i.__mathlib_dbl_overflow)
-    i.__mathlib_dbl_underflow                0x00001f58   Section        0  dunder.o(i.__mathlib_dbl_underflow)
-    i.__scatterload_copy                     0x00001f78   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00001f86   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00001f88   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.__set_errno                            0x00001f98   Section        0  errno.o(i.__set_errno)
-    i._fp_digits                             0x00001fa4   Section        0  printfa.o(i._fp_digits)
-    _fp_digits                               0x00001fa5   Thumb Code   366  printfa.o(i._fp_digits)
-    i._printf_core                           0x00002128   Section        0  printfa.o(i._printf_core)
-    _printf_core                             0x00002129   Thumb Code  1744  printfa.o(i._printf_core)
-    i._printf_post_padding                   0x00002804   Section        0  printfa.o(i._printf_post_padding)
-    _printf_post_padding                     0x00002805   Thumb Code    36  printfa.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x00002828   Section        0  printfa.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x00002829   Thumb Code    46  printfa.o(i._printf_pre_padding)
-    i.fabs                                   0x00002856   Section        0  fabs.o(i.fabs)
-    i.fputc                                  0x00002870   Section        0  blinky.o(i.fputc)
-    i.main                                   0x00002884   Section        0  blinky.o(i.main)
-    i.sqrt                                   0x00002da8   Section        0  sqrt.o(i.sqrt)
-    .constdata                               0x00002e18   Section       28  uartstdio.o(.constdata)
-    g_pcHex                                  0x00002e18   Data           4  uartstdio.o(.constdata)
-    g_ui32UARTBase                           0x00002e1c   Data          12  uartstdio.o(.constdata)
-    g_ui32UARTPeriph                         0x00002e28   Data          12  uartstdio.o(.constdata)
-    .constdata                               0x00002e34   Section      596  sysctl.o(.constdata)
-    g_pui32VCOFrequencies                    0x00002e34   Data           8  sysctl.o(.constdata)
-    g_pui32Xtals                             0x00002e3c   Data         108  sysctl.o(.constdata)
-    g_pppui32XTALtoVCO                       0x00002ea8   Data         432  sysctl.o(.constdata)
-    g_sXTALtoMEMTIM                          0x00003058   Data          48  sysctl.o(.constdata)
-    .constdata                               0x00003088   Section      136  pow.o(.constdata)
-    bp                                       0x00003088   Data          16  pow.o(.constdata)
-    dp_h                                     0x00003098   Data          16  pow.o(.constdata)
-    dp_l                                     0x000030a8   Data          16  pow.o(.constdata)
-    L                                        0x000030b8   Data          48  pow.o(.constdata)
-    P                                        0x000030e8   Data          40  pow.o(.constdata)
-    .constdata                               0x00003110   Section        8  qnan.o(.constdata)
-    .conststring                             0x00003118   Section       17  uartstdio.o(.conststring)
+    i.UARTprintf                             0x00001138   Section        0  uartstdio.o(i.UARTprintf)
+    i.UARTvprintf                            0x0000114c   Section        0  uartstdio.o(i.UARTvprintf)
+    i.UARTwrite                              0x00001300   Section        0  uartstdio.o(i.UARTwrite)
+    i.__0printf                              0x0000133c   Section        0  printfa.o(i.__0printf)
+    i.__ARM_fpclassify                       0x0000135c   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i.__hardfp_pow                           0x00001390   Section        0  pow.o(i.__hardfp_pow)
+    i.__kernel_poly                          0x00001fe0   Section        0  poly.o(i.__kernel_poly)
+    i.__mathlib_dbl_divzero                  0x000020d8   Section        0  dunder.o(i.__mathlib_dbl_divzero)
+    i.__mathlib_dbl_infnan2                  0x00002108   Section        0  dunder.o(i.__mathlib_dbl_infnan2)
+    i.__mathlib_dbl_invalid                  0x00002120   Section        0  dunder.o(i.__mathlib_dbl_invalid)
+    i.__mathlib_dbl_overflow                 0x00002140   Section        0  dunder.o(i.__mathlib_dbl_overflow)
+    i.__mathlib_dbl_underflow                0x00002160   Section        0  dunder.o(i.__mathlib_dbl_underflow)
+    i.__scatterload_copy                     0x00002180   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x0000218e   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00002190   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.__set_errno                            0x000021a0   Section        0  errno.o(i.__set_errno)
+    i._fp_digits                             0x000021ac   Section        0  printfa.o(i._fp_digits)
+    _fp_digits                               0x000021ad   Thumb Code   366  printfa.o(i._fp_digits)
+    i._printf_core                           0x00002330   Section        0  printfa.o(i._printf_core)
+    _printf_core                             0x00002331   Thumb Code  1744  printfa.o(i._printf_core)
+    i._printf_post_padding                   0x00002a0c   Section        0  printfa.o(i._printf_post_padding)
+    _printf_post_padding                     0x00002a0d   Thumb Code    36  printfa.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x00002a30   Section        0  printfa.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x00002a31   Thumb Code    46  printfa.o(i._printf_pre_padding)
+    i.fabs                                   0x00002a5e   Section        0  fabs.o(i.fabs)
+    i.fputc                                  0x00002a78   Section        0  blinky.o(i.fputc)
+    i.main                                   0x00002a8c   Section        0  blinky.o(i.main)
+    i.sqrt                                   0x0000300c   Section        0  sqrt.o(i.sqrt)
+    .constdata                               0x0000307c   Section       28  uartstdio.o(.constdata)
+    g_pcHex                                  0x0000307c   Data           4  uartstdio.o(.constdata)
+    g_ui32UARTBase                           0x00003080   Data          12  uartstdio.o(.constdata)
+    g_ui32UARTPeriph                         0x0000308c   Data          12  uartstdio.o(.constdata)
+    .constdata                               0x00003098   Section      596  sysctl.o(.constdata)
+    g_pui32VCOFrequencies                    0x00003098   Data           8  sysctl.o(.constdata)
+    g_pui32Xtals                             0x000030a0   Data         108  sysctl.o(.constdata)
+    g_pppui32XTALtoVCO                       0x0000310c   Data         432  sysctl.o(.constdata)
+    g_sXTALtoMEMTIM                          0x000032bc   Data          48  sysctl.o(.constdata)
+    .constdata                               0x000032f0   Section      136  pow.o(.constdata)
+    bp                                       0x000032f0   Data          16  pow.o(.constdata)
+    dp_h                                     0x00003300   Data          16  pow.o(.constdata)
+    dp_l                                     0x00003310   Data          16  pow.o(.constdata)
+    L                                        0x00003320   Data          48  pow.o(.constdata)
+    P                                        0x00003350   Data          40  pow.o(.constdata)
+    .constdata                               0x00003378   Section        8  qnan.o(.constdata)
+    .conststring                             0x00003380   Section       17  uartstdio.o(.conststring)
     .data                                    0x20000000   Section        1  blinky.o(.data)
     .data                                    0x20000004   Section        8  uartstdio.o(.data)
     bLastWasCR                               0x20000004   Data           1  uartstdio.o(.data)
@@ -1025,30 +1026,33 @@ Image Symbol Table
     UARTClockSourceSet                       0x00001067   Thumb Code     6  uart.o(i.UARTClockSourceSet)
     UARTConfigSetExpClk                      0x0000106d   Thumb Code   110  uart.o(i.UARTConfigSetExpClk)
     UARTStdioConfig                          0x000010dd   Thumb Code    82  uartstdio.o(i.UARTStdioConfig)
-    __0printf                                0x00001139   Thumb Code    22  printfa.o(i.__0printf)
-    __1printf                                0x00001139   Thumb Code     0  printfa.o(i.__0printf)
-    __2printf                                0x00001139   Thumb Code     0  printfa.o(i.__0printf)
-    __c89printf                              0x00001139   Thumb Code     0  printfa.o(i.__0printf)
-    printf                                   0x00001139   Thumb Code     0  printfa.o(i.__0printf)
-    __ARM_fpclassify                         0x00001159   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
-    __hardfp_pow                             0x00001189   Thumb Code  3072  pow.o(i.__hardfp_pow)
-    __kernel_poly                            0x00001dd9   Thumb Code   248  poly.o(i.__kernel_poly)
-    __mathlib_dbl_divzero                    0x00001ed1   Thumb Code    28  dunder.o(i.__mathlib_dbl_divzero)
-    __mathlib_dbl_infnan2                    0x00001f01   Thumb Code    20  dunder.o(i.__mathlib_dbl_infnan2)
-    __mathlib_dbl_invalid                    0x00001f19   Thumb Code    24  dunder.o(i.__mathlib_dbl_invalid)
-    __mathlib_dbl_overflow                   0x00001f39   Thumb Code    24  dunder.o(i.__mathlib_dbl_overflow)
-    __mathlib_dbl_underflow                  0x00001f59   Thumb Code    24  dunder.o(i.__mathlib_dbl_underflow)
-    __scatterload_copy                       0x00001f79   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00001f87   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00001f89   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    __set_errno                              0x00001f99   Thumb Code     6  errno.o(i.__set_errno)
-    fabs                                     0x00002857   Thumb Code    24  fabs.o(i.fabs)
-    fputc                                    0x00002871   Thumb Code    16  blinky.o(i.fputc)
-    main                                     0x00002885   Thumb Code  1316  blinky.o(i.main)
-    sqrt                                     0x00002da9   Thumb Code   110  sqrt.o(i.sqrt)
-    __mathlib_zero                           0x00003110   Data           8  qnan.o(.constdata)
-    Region$$Table$$Base                      0x0000312c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000314c   Number         0  anon$$obj.o(Region$$Table)
+    UARTprintf                               0x00001139   Thumb Code    18  uartstdio.o(i.UARTprintf)
+    UARTvprintf                              0x0000114d   Thumb Code   420  uartstdio.o(i.UARTvprintf)
+    UARTwrite                                0x00001301   Thumb Code    56  uartstdio.o(i.UARTwrite)
+    __0printf                                0x0000133d   Thumb Code    22  printfa.o(i.__0printf)
+    __1printf                                0x0000133d   Thumb Code     0  printfa.o(i.__0printf)
+    __2printf                                0x0000133d   Thumb Code     0  printfa.o(i.__0printf)
+    __c89printf                              0x0000133d   Thumb Code     0  printfa.o(i.__0printf)
+    printf                                   0x0000133d   Thumb Code     0  printfa.o(i.__0printf)
+    __ARM_fpclassify                         0x0000135d   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
+    __hardfp_pow                             0x00001391   Thumb Code  3072  pow.o(i.__hardfp_pow)
+    __kernel_poly                            0x00001fe1   Thumb Code   248  poly.o(i.__kernel_poly)
+    __mathlib_dbl_divzero                    0x000020d9   Thumb Code    28  dunder.o(i.__mathlib_dbl_divzero)
+    __mathlib_dbl_infnan2                    0x00002109   Thumb Code    20  dunder.o(i.__mathlib_dbl_infnan2)
+    __mathlib_dbl_invalid                    0x00002121   Thumb Code    24  dunder.o(i.__mathlib_dbl_invalid)
+    __mathlib_dbl_overflow                   0x00002141   Thumb Code    24  dunder.o(i.__mathlib_dbl_overflow)
+    __mathlib_dbl_underflow                  0x00002161   Thumb Code    24  dunder.o(i.__mathlib_dbl_underflow)
+    __scatterload_copy                       0x00002181   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x0000218f   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00002191   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    __set_errno                              0x000021a1   Thumb Code     6  errno.o(i.__set_errno)
+    fabs                                     0x00002a5f   Thumb Code    24  fabs.o(i.fabs)
+    fputc                                    0x00002a79   Thumb Code    16  blinky.o(i.fputc)
+    main                                     0x00002a8d   Thumb Code  1348  blinky.o(i.main)
+    sqrt                                     0x0000300d   Thumb Code   110  sqrt.o(i.sqrt)
+    __mathlib_zero                           0x00003378   Data           8  qnan.o(.constdata)
+    Region$$Table$$Base                      0x00003394   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000033b4   Number         0  anon$$obj.o(Region$$Table)
     Array_Count                              0x20000000   Data           1  blinky.o(.data)
     __stdout                                 0x2000000c   Data           4  stdout.o(.data)
     UART_Buffer                              0x20000014   Data          20  blinky.o(.bss)
@@ -1062,9 +1066,9 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_IROM (Base: 0x00000000, Size: 0x00003160, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM (Base: 0x00000000, Size: 0x000033c8, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000314c, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000033b4, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1125,49 +1129,55 @@ Memory Map of the image
     0x0000106c   0x0000106c   0x0000006e   Code   RO         1160    i.UARTConfigSetExpClk  driverlib.lib(uart.o)
     0x000010da   0x000010da   0x00000002   PAD
     0x000010dc   0x000010dc   0x0000005c   Code   RO          113    i.UARTStdioConfig   uartstdio.o
-    0x00001138   0x00001138   0x00000020   Code   RO         1811    i.__0printf         mc_w.l(printfa.o)
-    0x00001158   0x00001158   0x00000030   Code   RO         1869    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
-    0x00001188   0x00001188   0x00000c50   Code   RO         1561    i.__hardfp_pow      m_wm.l(pow.o)
-    0x00001dd8   0x00001dd8   0x000000f8   Code   RO         1871    i.__kernel_poly     m_wm.l(poly.o)
-    0x00001ed0   0x00001ed0   0x00000030   Code   RO         1849    i.__mathlib_dbl_divzero  m_wm.l(dunder.o)
-    0x00001f00   0x00001f00   0x00000014   Code   RO         1851    i.__mathlib_dbl_infnan2  m_wm.l(dunder.o)
-    0x00001f14   0x00001f14   0x00000004   PAD
-    0x00001f18   0x00001f18   0x00000020   Code   RO         1852    i.__mathlib_dbl_invalid  m_wm.l(dunder.o)
-    0x00001f38   0x00001f38   0x00000020   Code   RO         1853    i.__mathlib_dbl_overflow  m_wm.l(dunder.o)
-    0x00001f58   0x00001f58   0x00000020   Code   RO         1855    i.__mathlib_dbl_underflow  m_wm.l(dunder.o)
-    0x00001f78   0x00001f78   0x0000000e   Code   RO         1939    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00001f86   0x00001f86   0x00000002   Code   RO         1940    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00001f88   0x00001f88   0x0000000e   Code   RO         1941    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00001f96   0x00001f96   0x00000002   PAD
-    0x00001f98   0x00001f98   0x0000000c   Code   RO         1913    i.__set_errno       mc_w.l(errno.o)
-    0x00001fa4   0x00001fa4   0x00000184   Code   RO         1818    i._fp_digits        mc_w.l(printfa.o)
-    0x00002128   0x00002128   0x000006dc   Code   RO         1819    i._printf_core      mc_w.l(printfa.o)
-    0x00002804   0x00002804   0x00000024   Code   RO         1820    i._printf_post_padding  mc_w.l(printfa.o)
-    0x00002828   0x00002828   0x0000002e   Code   RO         1821    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x00002856   0x00002856   0x00000018   Code   RO         1865    i.fabs              m_wm.l(fabs.o)
-    0x0000286e   0x0000286e   0x00000002   PAD
-    0x00002870   0x00002870   0x00000014   Code   RO            3    i.fputc             blinky.o
-    0x00002884   0x00002884   0x00000524   Code   RO            4    i.main              blinky.o
-    0x00002da8   0x00002da8   0x0000006e   Code   RO         1876    i.sqrt              m_wm.l(sqrt.o)
-    0x00002e16   0x00002e16   0x00000002   PAD
-    0x00002e18   0x00002e18   0x0000001c   Data   RO          119    .constdata          uartstdio.o
-    0x00002e34   0x00002e34   0x00000254   Data   RO          848    .constdata          driverlib.lib(sysctl.o)
-    0x00003088   0x00003088   0x00000088   Data   RO         1564    .constdata          m_wm.l(pow.o)
-    0x00003110   0x00003110   0x00000008   Data   RO         1873    .constdata          m_wm.l(qnan.o)
-    0x00003118   0x00003118   0x00000011   Data   RO          120    .conststring        uartstdio.o
-    0x00003129   0x00003129   0x00000003   PAD
-    0x0000312c   0x0000312c   0x00000020   Data   RO         1937    Region$$Table       anon$$obj.o
+    0x00001138   0x00001138   0x00000012   Code   RO          116    i.UARTprintf        uartstdio.o
+    0x0000114a   0x0000114a   0x00000002   PAD
+    0x0000114c   0x0000114c   0x000001b4   Code   RO          117    i.UARTvprintf       uartstdio.o
+    0x00001300   0x00001300   0x0000003c   Code   RO          118    i.UARTwrite         uartstdio.o
+    0x0000133c   0x0000133c   0x00000020   Code   RO         1811    i.__0printf         mc_w.l(printfa.o)
+    0x0000135c   0x0000135c   0x00000030   Code   RO         1869    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
+    0x0000138c   0x0000138c   0x00000004   PAD
+    0x00001390   0x00001390   0x00000c50   Code   RO         1561    i.__hardfp_pow      m_wm.l(pow.o)
+    0x00001fe0   0x00001fe0   0x000000f8   Code   RO         1871    i.__kernel_poly     m_wm.l(poly.o)
+    0x000020d8   0x000020d8   0x00000030   Code   RO         1849    i.__mathlib_dbl_divzero  m_wm.l(dunder.o)
+    0x00002108   0x00002108   0x00000014   Code   RO         1851    i.__mathlib_dbl_infnan2  m_wm.l(dunder.o)
+    0x0000211c   0x0000211c   0x00000004   PAD
+    0x00002120   0x00002120   0x00000020   Code   RO         1852    i.__mathlib_dbl_invalid  m_wm.l(dunder.o)
+    0x00002140   0x00002140   0x00000020   Code   RO         1853    i.__mathlib_dbl_overflow  m_wm.l(dunder.o)
+    0x00002160   0x00002160   0x00000020   Code   RO         1855    i.__mathlib_dbl_underflow  m_wm.l(dunder.o)
+    0x00002180   0x00002180   0x0000000e   Code   RO         1939    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0000218e   0x0000218e   0x00000002   Code   RO         1940    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00002190   0x00002190   0x0000000e   Code   RO         1941    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0000219e   0x0000219e   0x00000002   PAD
+    0x000021a0   0x000021a0   0x0000000c   Code   RO         1913    i.__set_errno       mc_w.l(errno.o)
+    0x000021ac   0x000021ac   0x00000184   Code   RO         1818    i._fp_digits        mc_w.l(printfa.o)
+    0x00002330   0x00002330   0x000006dc   Code   RO         1819    i._printf_core      mc_w.l(printfa.o)
+    0x00002a0c   0x00002a0c   0x00000024   Code   RO         1820    i._printf_post_padding  mc_w.l(printfa.o)
+    0x00002a30   0x00002a30   0x0000002e   Code   RO         1821    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x00002a5e   0x00002a5e   0x00000018   Code   RO         1865    i.fabs              m_wm.l(fabs.o)
+    0x00002a76   0x00002a76   0x00000002   PAD
+    0x00002a78   0x00002a78   0x00000014   Code   RO            3    i.fputc             blinky.o
+    0x00002a8c   0x00002a8c   0x00000580   Code   RO            4    i.main              blinky.o
+    0x0000300c   0x0000300c   0x0000006e   Code   RO         1876    i.sqrt              m_wm.l(sqrt.o)
+    0x0000307a   0x0000307a   0x00000002   PAD
+    0x0000307c   0x0000307c   0x0000001c   Data   RO          119    .constdata          uartstdio.o
+    0x00003098   0x00003098   0x00000254   Data   RO          848    .constdata          driverlib.lib(sysctl.o)
+    0x000032ec   0x000032ec   0x00000004   PAD
+    0x000032f0   0x000032f0   0x00000088   Data   RO         1564    .constdata          m_wm.l(pow.o)
+    0x00003378   0x00003378   0x00000008   Data   RO         1873    .constdata          m_wm.l(qnan.o)
+    0x00003380   0x00003380   0x00000011   Data   RO          120    .conststring        uartstdio.o
+    0x00003391   0x00003391   0x00000003   PAD
+    0x00003394   0x00003394   0x00000020   Data   RO         1937    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM (Exec base: 0x20000000, Load base: 0x0000314c, Size: 0x00000228, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM (Exec base: 0x20000000, Load base: 0x000033b4, Size: 0x00000228, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x0000314c   0x00000001   Data   RW            7    .data               blinky.o
-    0x20000001   0x0000314d   0x00000003   PAD
-    0x20000004   0x00003150   0x00000008   Data   RW          121    .data               uartstdio.o
-    0x2000000c   0x00003158   0x00000004   Data   RW         1900    .data               mc_w.l(stdout.o)
-    0x20000010   0x0000315c   0x00000004   Data   RW         1914    .data               mc_w.l(errno.o)
+    0x20000000   0x000033b4   0x00000001   Data   RW            7    .data               blinky.o
+    0x20000001   0x000033b5   0x00000003   PAD
+    0x20000004   0x000033b8   0x00000008   Data   RW          121    .data               uartstdio.o
+    0x2000000c   0x000033c0   0x00000004   Data   RW         1900    .data               mc_w.l(stdout.o)
+    0x20000010   0x000033c4   0x00000004   Data   RW         1914    .data               mc_w.l(errno.o)
     0x20000014        -       0x00000014   Zero   RW            5    .bss                blinky.o
     0x20000028        -       0x00000200   Zero   RW          106    STACK               startup_rvmdk.o
 
@@ -1179,14 +1189,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      1664        320          0          1         20      10494   blinky.o
+      1756        350          0          1         20      10502   blinky.o
        648        622          0          0        512        280   startup_rvmdk.o
-        92         10         45          8          0       2425   uartstdio.o
+       606         30         45          8          0       5172   uartstdio.o
 
     ----------------------------------------------------------------------
-      2404        952         80         12        532      13199   Object Totals
+      3012       1002         80         12        532      15954   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          3          3          0          0   (incl. Padding)
+         2          0          3          3          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1235,8 +1245,8 @@ Image component sizes
        162          0          0          0          0        100   dsqrt.o
 
     ----------------------------------------------------------------------
-      9396        516        740          8          0      24043   Library Totals
-        18          0          0          0          0          0   (incl. Padding)
+      9400        516        744          8          0      24043   Library Totals
+        22          0          4          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1248,7 +1258,7 @@ Image component sizes
       1384          0          0          0          0       1064   mf_w.l
 
     ----------------------------------------------------------------------
-      9396        516        740          8          0      24043   Library Totals
+      9400        516        744          8          0      24043   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1257,15 +1267,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     11800       1468        820         20        532      33306   Grand Totals
-     11800       1468        820         20        532      33306   ELF Image Totals
-     11800       1468        820         20          0          0   ROM Totals
+     12412       1518        824         20        532      35761   Grand Totals
+     12412       1518        824         20        532      35761   ELF Image Totals
+     12412       1518        824         20          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                12620 (  12.32kB)
+    Total RO  Size (Code + RO Data)                13236 (  12.93kB)
     Total RW  Size (RW Data + ZI Data)               552 (   0.54kB)
-    Total ROM Size (Code + RO Data + RW Data)      12640 (  12.34kB)
+    Total ROM Size (Code + RO Data + RW Data)      13256 (  12.95kB)
 
 ==============================================================================
 
