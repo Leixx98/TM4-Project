@@ -116,7 +116,7 @@ void AD8253PinConfig()
 //Ö÷º¯Êý
 int main(void)
 {	
-  uint32_t ADC_Value=1,ADC_TempValue[15],Temp=22518,N0Val;
+  uint32_t ADC_Value=1,ADC_TempValue[15],Temp=33000,N0Val;
   //forå¾ªçŽ¯ç”¨å’Œæ”¹å˜å¢žç›Šæ ‡å¿—ä½  
   uint8_t i,Gain=1;       
   uint8_t x='\"',f=0xff;
@@ -162,14 +162,14 @@ int main(void)
                     if(UART_Buffer[2]==0x01)
                     {
                         Temp+=694;
-                        if(Temp>34600)
-                            Temp=34600;
+                        if(Temp>49999)
+                            Temp=0;
                         N0Val+=5;
                     }
                     else if(UART_Buffer[2]==0x02)
                     {
                         Temp-=694;
-                        if(Temp<10026)
+                        if(Temp<10000)
                             Temp=10026;
                         N0Val-=5;
                     }
@@ -215,34 +215,101 @@ int main(void)
         ADC_Value /= 7;
         if(Gain==1&&ADC_Value<181)
          {
-             Gain = 10;
-            GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,GPIO_PIN_6);
-            GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
+                ADCProcessorTrigger(ADC0_BASE, 0); 
+				while(!ADCIntStatus(ADC0_BASE, 0, false)) 
+				{
+				}  
+				ADCIntClear(ADC0_BASE,0);
+				ADCSequenceDataGet(ADC0_BASE, 0, &ADC_Value );
+				ADC_Value =ADC_Value*825>>10;
+                ADC_TempValue[i] = ADC_Value;
+                SysCtlDelay(SysCtlClockGet()/100);
+              
+             if(Gain==1&&ADC_Value<181)
+             {               
+                 Gain = 10;
+                GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,GPIO_PIN_6);
+                GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
+             }
          }
          
-         if(Gain==10&&ADC_Value>1520)
+         if(Gain==10&&ADC_Value>1700)
          {
-            Gain = 1;
-            GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,0);
-            GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
+                ADCProcessorTrigger(ADC0_BASE, 0); 
+				while(!ADCIntStatus(ADC0_BASE, 0, false)) 
+				{
+				}  
+				ADCIntClear(ADC0_BASE,0);
+				ADCSequenceDataGet(ADC0_BASE, 0, &ADC_Value );
+				ADC_Value =ADC_Value*825>>10;
+                ADC_TempValue[i] = ADC_Value;
+                SysCtlDelay(SysCtlClockGet()/100);   
+             
+                 if(Gain==10&&ADC_Value>1700)
+                {
+                    Gain = 1;
+                    GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,0);
+                    GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
+                }
          }
+         
+         if(Gain==10&&ADC_Value<240)
+         {
+                ADCProcessorTrigger(ADC0_BASE, 0); 
+				while(!ADCIntStatus(ADC0_BASE, 0, false)) 
+				{
+				}  
+				ADCIntClear(ADC0_BASE,0);
+				ADCSequenceDataGet(ADC0_BASE, 0, &ADC_Value );
+				ADC_Value =ADC_Value*825>>10;
+                ADC_TempValue[i] = ADC_Value;
+                SysCtlDelay(SysCtlClockGet()/100);   
+             
+                 if(Gain==10&&ADC_Value<240)
+                {
+                    Gain = 100;
+                    GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,0);
+                    GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,GPIO_PIN_7);
+                }
+         }
+         
+          if(Gain==100&&ADC_Value>2050)
+         {
+                ADCProcessorTrigger(ADC0_BASE, 0); 
+				while(!ADCIntStatus(ADC0_BASE, 0, false)) 
+				{
+				}  
+				ADCIntClear(ADC0_BASE,0);
+				ADCSequenceDataGet(ADC0_BASE, 0, &ADC_Value );
+				ADC_Value =ADC_Value*825>>10;
+                ADC_TempValue[i] = ADC_Value;
+                SysCtlDelay(SysCtlClockGet()/100);   
+             
+                 if(Gain==100&&ADC_Value>2050)
+                {
+                    Gain = 10;
+                    GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_6,GPIO_PIN_6);
+                    GPIOPinWrite(GPIO_PORTC_BASE,GPIO_PIN_7,0);
+                }
+         }
+         
          if(Gain==1)
          {
-             if(ADC_Value>1240)
+             if(ADC_Value>1265)
              {
-                Signal_Value = (double)(0.0078*ADC_Value-1.8116);
+                Signal_Value = (double)(0.0076*ADC_Value-1.6093);
                  UARTprintf("%d\r\n",ADC_Value);
                 printf("t2.txt=%c%.2fmVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
              }             
-             else if(ADC_Value<1240&&ADC_Value>1030)
+             else if(ADC_Value<1265&&ADC_Value>1045)
              {
-                Signal_Value = (double)(0.0067*ADC_Value-0.4866);
+                Signal_Value = (double)(0.0066*ADC_Value-0.509);
                  UARTprintf("%d\r\n",ADC_Value);
                 printf("t2.txt=%c%.2fmVrms%c%c%c%c",x,Signal_Value,x,f,f,f);                   
              }        
-              else if(ADC_Value<1030&&ADC_Value>895)
+              else if(ADC_Value<1045&&ADC_Value>895)
              {
-                Signal_Value = (double)(0.9281*ADC_Value-0.0688);
+                Signal_Value = (double)(0.0066*ADC_Value-0.553);
                  UARTprintf("%d\r\n",ADC_Value);
                 printf("t2.txt=%c%.2fmVrms%c%c%c%c",x,Signal_Value,x,f,f,f);                   
              }
@@ -270,19 +337,19 @@ int main(void)
          
          if(Gain==10)
          {
-             if(ADC_Value>1330)
+             if(ADC_Value>1375)
              {
-                Signal_Value = (double)(1.1557*ADC_Value-751.29);   
+                Signal_Value = (double)(0.6992*ADC_Value-170.13);   
                 UARTprintf("%d\r\n",ADC_Value);
                 printf("t2.txt=%c%.1fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
              }
-             else if(ADC_Value<1330 &&ADC_Value >830)
+             else if(ADC_Value<1375 &&ADC_Value >835)
              {
-                Signal_Value = (double)(0.6862*ADC_Value-128.23);  
+                Signal_Value = (double)(0.644*ADC_Value-93.995);  
                 UARTprintf("%d\r\n",ADC_Value);
                 printf("t2.txt=%c%.1fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
              }
-              else if(ADC_Value<830 &&ADC_Value >515)
+              else if(ADC_Value<835 &&ADC_Value >515)
              {
                 Signal_Value = (double)(0.6204*ADC_Value-76.244);   
                 UARTprintf("%d\r\n",ADC_Value);
@@ -290,10 +357,38 @@ int main(void)
              }
              else if(ADC_Value<515)
              {
-                Signal_Value = (double)(0.5917*ADC_Value-61.22);   
+                Signal_Value = (double)(0.5814*ADC_Value-51.163);   
                 UARTprintf("%d\r\n",ADC_Value);
                  printf("t2.txt=%c%.1fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
              }             
+         }
+         
+         if(Gain==100)
+         {
+             if(ADC_Value>1600)
+             {
+                 Signal_Value = (double)(0.0808*ADC_Value-75.175);   
+                UARTprintf("%d\r\n",ADC_Value);
+                 printf("t2.txt=%c%.2fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
+             }
+             else if(ADC_Value<1600&&ADC_Value>1330)
+             {
+                Signal_Value = (double)(0.0751*ADC_Value-65.703);   
+                UARTprintf("%d\r\n",ADC_Value);
+                 printf("t2.txt=%c%.2fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
+             }             
+             else if(ADC_Value<1600&&ADC_Value>1330)
+             {
+                Signal_Value = (double)(0.0751*ADC_Value-65.703);   
+                UARTprintf("%d\r\n",ADC_Value);
+                 printf("t2.txt=%c%.2fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);  
+             }  
+             else if(ADC_Value<1330)
+             {
+                Signal_Value = (double)(0.0555*ADC_Value-40.588);   
+                UARTprintf("%d\r\n",ADC_Value);
+                 printf("t2.txt=%c%.2fuVrms%c%c%c%c",x,Signal_Value,x,f,f,f);                 
+             }
          }
 				SysCtlDelay(SysCtlClockGet()/5);
         
