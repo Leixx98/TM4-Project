@@ -25,6 +25,9 @@ Section Cross References
     blinky.o(i.main) refers to adc.o(i.ADCSequenceStepConfigure) for ADCSequenceStepConfigure
     blinky.o(i.main) refers to adc.o(i.ADCSequenceEnable) for ADCSequenceEnable
     blinky.o(i.main) refers to adc.o(i.ADCProcessorTrigger) for ADCProcessorTrigger
+    blinky.o(i.main) refers to sysctl.o(i.SysCtlClockGet) for SysCtlClockGet
+    blinky.o(i.main) refers to sysctl.o(.emb_text) for SysCtlDelay
+    blinky.o(i.main) refers to uart.o(i.UARTCharPut) for UARTCharPut
     blinky.o(i.main) refers to uart.o(i.UARTCharsAvail) for UARTCharsAvail
     blinky.o(i.main) refers to uart.o(i.UARTCharGet) for UARTCharGet
     blinky.o(i.main) refers to dflti.o(.text) for __aeabi_i2d
@@ -33,16 +36,13 @@ Section Cross References
     blinky.o(i.main) refers to dfltui.o(.text) for __aeabi_ui2d
     blinky.o(i.main) refers to dadd.o(.text) for __aeabi_dadd
     blinky.o(i.main) refers to dfixui.o(.text) for __aeabi_d2uiz
-    blinky.o(i.main) refers to uart.o(i.UARTCharPut) for UARTCharPut
     blinky.o(i.main) refers to printfa.o(i.__0printf) for __2printf
     blinky.o(i.main) refers to adc.o(i.ADCIntStatus) for ADCIntStatus
     blinky.o(i.main) refers to adc.o(i.ADCIntClear) for ADCIntClear
     blinky.o(i.main) refers to adc.o(i.ADCSequenceDataGet) for ADCSequenceDataGet
-    blinky.o(i.main) refers to sysctl.o(i.SysCtlClockGet) for SysCtlClockGet
-    blinky.o(i.main) refers to sysctl.o(.emb_text) for SysCtlDelay
+    blinky.o(i.main) refers to uartstdio.o(i.UARTprintf) for UARTprintf
     blinky.o(i.main) refers to blinky.o(.bss) for .bss
     blinky.o(i.main) refers to blinky.o(.data) for .data
-    blinky.o(i.main) refers to uartstdio.o(i.UARTprintf) for UARTprintf
     startup_rvmdk.o(RESET) refers to startup_rvmdk.o(STACK) for StackMem
     startup_rvmdk.o(RESET) refers to entry.o(.ARM.Collect$$$$00000000) for __main
     uartstdio.o(i.UARTStdioConfig) refers to uartstdio.o(.constdata) for .constdata
@@ -882,24 +882,24 @@ Image Symbol Table
     i.fabs                                   0x00002a5e   Section        0  fabs.o(i.fabs)
     i.fputc                                  0x00002a78   Section        0  blinky.o(i.fputc)
     i.main                                   0x00002a8c   Section        0  blinky.o(i.main)
-    i.sqrt                                   0x00003290   Section        0  sqrt.o(i.sqrt)
-    .constdata                               0x00003300   Section       28  uartstdio.o(.constdata)
-    g_pcHex                                  0x00003300   Data           4  uartstdio.o(.constdata)
-    g_ui32UARTBase                           0x00003304   Data          12  uartstdio.o(.constdata)
-    g_ui32UARTPeriph                         0x00003310   Data          12  uartstdio.o(.constdata)
-    .constdata                               0x0000331c   Section      596  sysctl.o(.constdata)
-    g_pui32VCOFrequencies                    0x0000331c   Data           8  sysctl.o(.constdata)
-    g_pui32Xtals                             0x00003324   Data         108  sysctl.o(.constdata)
-    g_pppui32XTALtoVCO                       0x00003390   Data         432  sysctl.o(.constdata)
-    g_sXTALtoMEMTIM                          0x00003540   Data          48  sysctl.o(.constdata)
-    .constdata                               0x00003570   Section      136  pow.o(.constdata)
-    bp                                       0x00003570   Data          16  pow.o(.constdata)
-    dp_h                                     0x00003580   Data          16  pow.o(.constdata)
-    dp_l                                     0x00003590   Data          16  pow.o(.constdata)
-    L                                        0x000035a0   Data          48  pow.o(.constdata)
-    P                                        0x000035d0   Data          40  pow.o(.constdata)
-    .constdata                               0x000035f8   Section        8  qnan.o(.constdata)
-    .conststring                             0x00003600   Section       17  uartstdio.o(.conststring)
+    i.sqrt                                   0x00002e58   Section        0  sqrt.o(i.sqrt)
+    .constdata                               0x00002ec8   Section       28  uartstdio.o(.constdata)
+    g_pcHex                                  0x00002ec8   Data           4  uartstdio.o(.constdata)
+    g_ui32UARTBase                           0x00002ecc   Data          12  uartstdio.o(.constdata)
+    g_ui32UARTPeriph                         0x00002ed8   Data          12  uartstdio.o(.constdata)
+    .constdata                               0x00002ee4   Section      596  sysctl.o(.constdata)
+    g_pui32VCOFrequencies                    0x00002ee4   Data           8  sysctl.o(.constdata)
+    g_pui32Xtals                             0x00002eec   Data         108  sysctl.o(.constdata)
+    g_pppui32XTALtoVCO                       0x00002f58   Data         432  sysctl.o(.constdata)
+    g_sXTALtoMEMTIM                          0x00003108   Data          48  sysctl.o(.constdata)
+    .constdata                               0x00003138   Section      136  pow.o(.constdata)
+    bp                                       0x00003138   Data          16  pow.o(.constdata)
+    dp_h                                     0x00003148   Data          16  pow.o(.constdata)
+    dp_l                                     0x00003158   Data          16  pow.o(.constdata)
+    L                                        0x00003168   Data          48  pow.o(.constdata)
+    P                                        0x00003198   Data          40  pow.o(.constdata)
+    .constdata                               0x000031c0   Section        8  qnan.o(.constdata)
+    .conststring                             0x000031c8   Section       17  uartstdio.o(.conststring)
     .data                                    0x20000000   Section        1  blinky.o(.data)
     .data                                    0x20000004   Section        8  uartstdio.o(.data)
     bLastWasCR                               0x20000004   Data           1  uartstdio.o(.data)
@@ -1048,11 +1048,11 @@ Image Symbol Table
     __set_errno                              0x000021a1   Thumb Code     6  errno.o(i.__set_errno)
     fabs                                     0x00002a5f   Thumb Code    24  fabs.o(i.fabs)
     fputc                                    0x00002a79   Thumb Code    16  blinky.o(i.fputc)
-    main                                     0x00002a8d   Thumb Code  1762  blinky.o(i.main)
-    sqrt                                     0x00003291   Thumb Code   110  sqrt.o(i.sqrt)
-    __mathlib_zero                           0x000035f8   Data           8  qnan.o(.constdata)
-    Region$$Table$$Base                      0x00003614   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00003634   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x00002a8d   Thumb Code   808  blinky.o(i.main)
+    sqrt                                     0x00002e59   Thumb Code   110  sqrt.o(i.sqrt)
+    __mathlib_zero                           0x000031c0   Data           8  qnan.o(.constdata)
+    Region$$Table$$Base                      0x000031dc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000031fc   Number         0  anon$$obj.o(Region$$Table)
     Array_Count                              0x20000000   Data           1  blinky.o(.data)
     __stdout                                 0x2000000c   Data           4  stdout.o(.data)
     UART_Buffer                              0x20000014   Data          20  blinky.o(.bss)
@@ -1066,9 +1066,9 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_IROM (Base: 0x00000000, Size: 0x00003648, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM (Base: 0x00000000, Size: 0x00003210, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00003634, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000031fc, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1156,27 +1156,27 @@ Memory Map of the image
     0x00002a5e   0x00002a5e   0x00000018   Code   RO         1865    i.fabs              m_wm.l(fabs.o)
     0x00002a76   0x00002a76   0x00000002   PAD
     0x00002a78   0x00002a78   0x00000014   Code   RO            3    i.fputc             blinky.o
-    0x00002a8c   0x00002a8c   0x00000804   Code   RO            4    i.main              blinky.o
-    0x00003290   0x00003290   0x0000006e   Code   RO         1876    i.sqrt              m_wm.l(sqrt.o)
-    0x000032fe   0x000032fe   0x00000002   PAD
-    0x00003300   0x00003300   0x0000001c   Data   RO          119    .constdata          uartstdio.o
-    0x0000331c   0x0000331c   0x00000254   Data   RO          848    .constdata          driverlib.lib(sysctl.o)
-    0x00003570   0x00003570   0x00000088   Data   RO         1564    .constdata          m_wm.l(pow.o)
-    0x000035f8   0x000035f8   0x00000008   Data   RO         1873    .constdata          m_wm.l(qnan.o)
-    0x00003600   0x00003600   0x00000011   Data   RO          120    .conststring        uartstdio.o
-    0x00003611   0x00003611   0x00000003   PAD
-    0x00003614   0x00003614   0x00000020   Data   RO         1937    Region$$Table       anon$$obj.o
+    0x00002a8c   0x00002a8c   0x000003cc   Code   RO            4    i.main              blinky.o
+    0x00002e58   0x00002e58   0x0000006e   Code   RO         1876    i.sqrt              m_wm.l(sqrt.o)
+    0x00002ec6   0x00002ec6   0x00000002   PAD
+    0x00002ec8   0x00002ec8   0x0000001c   Data   RO          119    .constdata          uartstdio.o
+    0x00002ee4   0x00002ee4   0x00000254   Data   RO          848    .constdata          driverlib.lib(sysctl.o)
+    0x00003138   0x00003138   0x00000088   Data   RO         1564    .constdata          m_wm.l(pow.o)
+    0x000031c0   0x000031c0   0x00000008   Data   RO         1873    .constdata          m_wm.l(qnan.o)
+    0x000031c8   0x000031c8   0x00000011   Data   RO          120    .conststring        uartstdio.o
+    0x000031d9   0x000031d9   0x00000003   PAD
+    0x000031dc   0x000031dc   0x00000020   Data   RO         1937    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM (Exec base: 0x20000000, Load base: 0x00003634, Size: 0x00000228, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM (Exec base: 0x20000000, Load base: 0x000031fc, Size: 0x00000228, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00003634   0x00000001   Data   RW            7    .data               blinky.o
-    0x20000001   0x00003635   0x00000003   PAD
-    0x20000004   0x00003638   0x00000008   Data   RW          121    .data               uartstdio.o
-    0x2000000c   0x00003640   0x00000004   Data   RW         1900    .data               mc_w.l(stdout.o)
-    0x20000010   0x00003644   0x00000004   Data   RW         1914    .data               mc_w.l(errno.o)
+    0x20000000   0x000031fc   0x00000001   Data   RW            7    .data               blinky.o
+    0x20000001   0x000031fd   0x00000003   PAD
+    0x20000004   0x00003200   0x00000008   Data   RW          121    .data               uartstdio.o
+    0x2000000c   0x00003208   0x00000004   Data   RW         1900    .data               mc_w.l(stdout.o)
+    0x20000010   0x0000320c   0x00000004   Data   RW         1914    .data               mc_w.l(errno.o)
     0x20000014        -       0x00000014   Zero   RW            5    .bss                blinky.o
     0x20000028        -       0x00000200   Zero   RW          106    STACK               startup_rvmdk.o
 
@@ -1188,12 +1188,12 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      2400        424          0          1         20      11254   blinky.o
+      1320        222          0          1         20      10274   blinky.o
        648        622          0          0        512        280   startup_rvmdk.o
        606         30         45          8          0       5172   uartstdio.o
 
     ----------------------------------------------------------------------
-      3656       1076         80         12        532      16706   Object Totals
+      2576        874         80         12        532      15726   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          3          3          0          0   (incl. Padding)
 
@@ -1266,15 +1266,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     13056       1592        820         20        532      36513   Grand Totals
-     13056       1592        820         20        532      36513   ELF Image Totals
-     13056       1592        820         20          0          0   ROM Totals
+     11976       1390        820         20        532      35533   Grand Totals
+     11976       1390        820         20        532      35533   ELF Image Totals
+     11976       1390        820         20          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                13876 (  13.55kB)
+    Total RO  Size (Code + RO Data)                12796 (  12.50kB)
     Total RW  Size (RW Data + ZI Data)               552 (   0.54kB)
-    Total ROM Size (Code + RO Data + RW Data)      13896 (  13.57kB)
+    Total ROM Size (Code + RO Data + RW Data)      12816 (  12.52kB)
 
 ==============================================================================
 

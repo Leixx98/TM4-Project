@@ -1,0 +1,12 @@
+.\rvmdk\dataget.o: utils\dataget.c
+.\rvmdk\dataget.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\rvmdk\dataget.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\rvmdk\dataget.o: ..\blinky\inc/hw_types.h
+.\rvmdk\dataget.o: ..\blinky\inc/hw_memmap.h
+.\rvmdk\dataget.o: ..\blinky\inc/hw_gpio.h
+.\rvmdk\dataget.o: ..\blinky\driverlib/sysctl.h
+.\rvmdk\dataget.o: ..\blinky\driverlib/rom.h
+.\rvmdk\dataget.o: ..\blinky\driverlib/pin_map.h
+.\rvmdk\dataget.o: ..\blinky\driverlib/gpio.h
+.\rvmdk\dataget.o: ..\blinky\driverlib/uart.h
+.\rvmdk\dataget.o: ..\blinky\utils/dataget.h
