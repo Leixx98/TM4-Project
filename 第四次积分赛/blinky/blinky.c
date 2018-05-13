@@ -69,6 +69,7 @@ ConfigureUART(void)
     //
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART3);
     //
     // Configure GPIO Pins for UART mode.
     //
@@ -78,6 +79,9 @@ ConfigureUART(void)
     ROM_GPIOPinConfigure(GPIO_PC4_U1RX);
     ROM_GPIOPinConfigure(GPIO_PC5_U1TX);   
     ROM_GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+    ROM_GPIOPinConfigure(GPIO_PC6_U3RX);
+    ROM_GPIOPinConfigure(GPIO_PC7_U3TX);   
+    ROM_GPIOPinTypeUART(GPIO_PORTC_BASE, GPIO_PIN_6 | GPIO_PIN_7);    
     //
     // Use the internal 16MHz oscillator as the UART clock source.
     //
@@ -90,6 +94,9 @@ ConfigureUART(void)
     UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),9600,
                                               (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
                                               UART_CONFIG_PAR_NONE));
+    UARTConfigSetExpClk(UART3_BASE,SysCtlClockGet(),115200,
+                                              (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
+                                              UART_CONFIG_PAR_NONE));                                          
 }
 
 
@@ -99,12 +106,15 @@ int main(void)
 {
     uint8_t i;
     uint16_t AmpValue=801;
-    uint32_t FreValue;
+    uint16_t PhaValue=83;
+    uint32_t FreValue=1000;
 	//设置时钟
 	SysCtlClockSet(SYSCTL_SYSDIV_10| SYSCTL_USE_PLL| SYSCTL_OSC_MAIN |
 								SYSCTL_XTAL_16MHZ);
 	//配置串口
 	ConfigureUART();
+    //AD9959初始化
+    Init_AD9959(); 
 	//使能GPIOF
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 	//设置PF1为输出
@@ -114,7 +124,6 @@ int main(void)
                          GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);	
 	//点灯
 	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-	Init_AD9959();
 	while(1)
 	{
                //捕捉到了数据头
@@ -135,17 +144,31 @@ int main(void)
                        
                         else if(UART_Buffer[1]==0x0b)
                         {
-                            FreValue=0;
-                            for(i=0;i<Array_Count;i++)
+                            if(UART_Buffer[2]==0x01)
                             {
-                              if(UART_Buffer[i]>47)
-                                    FreValue+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
+                                FreValue=0;
+                                for(i=0;i<Array_Count;i++)
+                                {
+                                  if(UART_Buffer[i]>47)
+                                        FreValue+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
+                                }
+                            }
+                            
+                            else if(UART_Buffer[2]==0x02)
+                            {
+                                PhaValue = 0;
+                                 for(i=0;i<Array_Count;i++)
+                                {
+                                  if(UART_Buffer[i]>47)
+                                       PhaValue +=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
+                                }
                             }
                         }
                         UARTprintf(" %d ",AmpValue);
-                        UARTprintf(" %d ",FreValue);      
-                        Write_Amplitude(1,AmpValue);
-                        Write_frequence(1,FreValue);                        
+                        UARTprintf(" %d ",FreValue);  
+                        Write_frequence(2,FreValue);                            
+                        Write_frequence(3,FreValue);   
+                        Write_Phase(3,PhaValue);
                         if(UARTCharsAvail(UART1_BASE))
                             Array_Count=UARTCharGet(UART1_BASE);
                         Array_Count = 0;

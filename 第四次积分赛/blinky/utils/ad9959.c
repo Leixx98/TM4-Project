@@ -15,7 +15,7 @@ u8 CSR_DATA2[1] = {0x40};      // 开 CH2
 u8 CSR_DATA3[1] = {0x80};      // 开 CH3		
 																	
 u8 FR1_DATA[3] = {0xD0,0x00,0x00};
-u8 FR2_DATA[2] = {0x00,0x00};//default Value = 0x0000
+u8 FR2_DATA[2] = {0x08,0x00};//default Value = 0x0000
 u8 CFR_DATA[3] = {0x00,0x03,0x00};//default Value = 0x000302	   
 																	
 u8 CPOW0_DATA[2] = {0x00,0x00};//default Value = 0x0000   @ = POW/2^14*360
@@ -59,7 +59,7 @@ void Init_AD9959(void)
     IntReset();  //AD9959复位  
 
   WriteData_AD9959(FR1_ADD,3,FR1_DATA,1);//写功能寄存器1
-//  WriteData_AD9959(FR2_ADD,2,FR2_DATA,1);
+  WriteData_AD9959(FR2_ADD,2,FR2_DATA,1);
 //  WriteData_AD9959(CFR_ADD,3,CFR_DATA,1);
 //  WriteData_AD9959(CPOW0_ADD,2,CPOW0_DATA,0);
 //  WriteData_AD9959(ACR_ADD,3,ACR_DATA,0);
@@ -67,10 +67,8 @@ void Init_AD9959(void)
 //  WriteData_AD9959(RDW_ADD,2,RDW_DATA,0);
 //  WriteData_AD9959(FDW_ADD,4,FDW_DATA,1);
    //写入初始频率
-	Write_frequence(3,50000);
-	Write_frequence(0,50000); 
-	Write_frequence(1,50000);
-	Write_frequence(2,50000 );
+	Write_frequence(2,60000);
+	Write_frequence(3,60000 );
 	
 ////	Write_frequence(3,50);
 ////	Write_frequence(0,50);
@@ -78,10 +76,12 @@ void Init_AD9959(void)
 ////	Write_frequence(2,50);
 
 	
-	Write_Amplitude(3, 800);
-	Write_Amplitude(0, 800);
-	Write_Amplitude(1, 1023);
-	Write_Amplitude(2, 800);
+	Write_Amplitude(2, 874);
+	Write_Amplitude(3, 874);
+    
+     Write_Phase(3,0);
+     Write_Phase(2,0);
+//    Write_Phase(2,83);
 } 
 //延时
 void delay1 (u32 length)
@@ -252,7 +252,7 @@ Phase:    输出相位,范围：0~16383(对应角度：0°~360°)
 void Write_Phase(u8 Channel,u16 Phase)
 {
 	u16 P_temp=0;
-  P_temp=(u16)Phase;
+  P_temp=(u16)((Phase*16384)/360);
 	CPOW0_DATA[1]=(u8)P_temp;
 	CPOW0_DATA[0]=(u8)(P_temp>>8);
 	if(Channel==0)
