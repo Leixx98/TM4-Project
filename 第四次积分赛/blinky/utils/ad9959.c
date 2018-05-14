@@ -13,6 +13,7 @@ u8 CSR_DATA0[1] = {0x10};     // 开 CH0
 u8 CSR_DATA1[1] = {0x20};      // 开 CH1
 u8 CSR_DATA2[1] = {0x40};      // 开 CH2
 u8 CSR_DATA3[1] = {0x80};      // 开 CH3		
+u8 CSR_DATA[1]   = {0xc0};
 																	
 u8 FR1_DATA[3] = {0xD0,0x00,0x00};
 u8 FR2_DATA[2] = {0x08,0x00};//default Value = 0x0000
@@ -59,7 +60,7 @@ void Init_AD9959(void)
     IntReset();  //AD9959复位  
 
   WriteData_AD9959(FR1_ADD,3,FR1_DATA,1);//写功能寄存器1
-  WriteData_AD9959(FR2_ADD,2,FR2_DATA,1);
+//  WriteData_AD9959(FR2_ADD,2,FR2_DATA,1);
 //  WriteData_AD9959(CFR_ADD,3,CFR_DATA,1);
 //  WriteData_AD9959(CPOW0_ADD,2,CPOW0_DATA,0);
 //  WriteData_AD9959(ACR_ADD,3,ACR_DATA,0);
@@ -67,8 +68,7 @@ void Init_AD9959(void)
 //  WriteData_AD9959(RDW_ADD,2,RDW_DATA,0);
 //  WriteData_AD9959(FDW_ADD,4,FDW_DATA,1);
    //写入初始频率
-	Write_frequence(2,60000);
-	Write_frequence(3,60000 );
+  Write_Quadrature(10000);
 	
 ////	Write_frequence(3,50);
 ////	Write_frequence(0,50);
@@ -76,11 +76,6 @@ void Init_AD9959(void)
 ////	Write_frequence(2,50);
 
 	
-	Write_Amplitude(2, 874);
-	Write_Amplitude(3, 874);
-    
-     Write_Phase(3,0);
-     Write_Phase(2,0);
 //    Write_Phase(2,83);
 } 
 //延时
@@ -276,3 +271,37 @@ void Write_Phase(u8 Channel,u16 Phase)
     WriteData_AD9959(CPOW0_ADD,2,CPOW0_DATA,1);
   }
 }	 
+
+
+
+void Write_Quadrature(uint32_t Freq)
+{		
+      u8 ACR_DATA[3] = {0x00,0x00,0x00};//default Value = 0x--0000 Rest = 18.91/Iout 
+      u8 CFTW0_DATA[4] ={0x00,0x00,0x00,0x00};	//中间变量
+	  u32 Temp;      
+      u16 A_temp;//=0x23ff;
+      u16 P_temp=0;
+      P_temp=(u16)((90*16384)/360);
+	 CPOW0_DATA[1]=(u8)P_temp;
+	 CPOW0_DATA[0]=(u8)(P_temp>>8);
+      
+      A_temp=867|0x1000;      
+	  Temp=(u32)Freq*8.589934592;	   //将输入频率因子分为四个字节  4.294967296=(2^32)/500000000
+	  
+      CFTW0_DATA[3]=(u8)Temp;
+	  CFTW0_DATA[2]=(u8)(Temp>>8);
+	  CFTW0_DATA[1]=(u8)(Temp>>16);
+	  CFTW0_DATA[0]=(u8)(Temp>>24);
+      
+      ACR_DATA[2] = (u8)A_temp;  //低位数据
+      ACR_DATA[1] = (u8)(A_temp>>8); //高位数据
+      
+      WriteData_AD9959(CSR_ADD,1,CSR_DATA,0);   //选中通道2，3
+      WriteData_AD9959(ACR_ADD,3,ACR_DATA,1);   //写入幅度
+      WriteData_AD9959(CFTW0_ADD,4,CFTW0_DATA,1);//CTW0 address 0x04.输出CH2,3设定频率	
+      
+       WriteData_AD9959(CSR_ADD,1,CSR_DATA3,0);   //选中通道3
+       WriteData_AD9959(CPOW0_ADD,2,CPOW0_DATA,1); //写入相位值
+      
+}
+

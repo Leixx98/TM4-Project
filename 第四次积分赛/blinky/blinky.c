@@ -1,8 +1,8 @@
 /*******************************************
-项目：移相器
-功能：将输入的方波按步进3.6度前移或滞后
-标准电压：3.3V
-最低电压：1.645V
+??:???
+??:?????????3.6??????
+????:3.3V
+????:1.645V
 *******************************************/
 
 #include <stdint.h>
@@ -26,6 +26,7 @@
 #include "utils/uartstdio.h"
 #include "utils/buttons.h"
 #include "utils/ad9959.h"
+#include "utils/ads1115.h"
 
 
 #ifdef DEBUG
@@ -38,6 +39,7 @@ __error__(char *pcFilename, uint32_t ui32Line)
 int32_t t;
 uint8_t UART_Buffer[20];
 uint8_t Array_Count;
+
 //*****************************************************************************
 //
 // Delay for the specified number of seconds.  Depending upon the current
@@ -101,32 +103,56 @@ ConfigureUART(void)
 
 
 
-//主函数
+//???
 int main(void)
 {
+    //???????,?????????????
+
+
     uint8_t i;
-    uint16_t AmpValue=801;
-    uint16_t PhaValue=83;
-    uint32_t FreValue=1000;
-	//设置时钟
+    //ADC?????
+    uint8_t SamFlag=0;
+    //???????
+    uint32_t ADC_Value1,ADC_Value2,ADC_Temp;
+	uint16_t AmpValue=801;
+	uint16_t PhaValue=83;
+   	uint32_t FreValue=1000;
+
+	//????
 	SysCtlClockSet(SYSCTL_SYSDIV_10| SYSCTL_USE_PLL| SYSCTL_OSC_MAIN |
 								SYSCTL_XTAL_16MHZ);
-	//配置串口
+	//????
 	ConfigureUART();
-    //AD9959初始化
+    //ADS1115?????
+    ADS1115_IO_Init();
+   //AD9959???
     Init_AD9959(); 
-	//使能GPIOF
+	//??GPIOF
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-	//设置PF1为输出
+	//??PF1???
 	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1);
-	//设置PF1为2mA弱上拉
+	//??PF1?2mA???
 	GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_1 ,
                          GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);	
-	//点灯
+	//??
 	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-	while(1)
+
+    while(1)
 	{
-               //捕捉到了数据头
+		          if(SamFlag==1)
+                 {
+                        ADC_Temp = ADS1115_Getdata(2); 
+                        ADC_Value1 = (ADC_Temp*12281)/65536;        
+                        UARTprintf("DC1:%d ",ADC_Value1);
+
+
+                        ADC_Temp = ADS1115_Getdata(3); 
+                        ADC_Value2 = (ADC_Temp*12281)/65536;        
+                        UARTprintf("DC2:%d",ADC_Value2);
+//                     
+                         SamFlag = 0;
+                 }
+
                if(UARTCharsAvail(UART1_BASE))
                {       
                     while(UART_Buffer[Array_Count]!=0x0d)
@@ -164,15 +190,13 @@ int main(void)
                                 }
                             }
                         }
-                        UARTprintf(" %d ",AmpValue);
-                        UARTprintf(" %d ",FreValue);  
-                        Write_frequence(2,FreValue);                            
-                        Write_frequence(3,FreValue);   
-                        Write_Phase(3,PhaValue);
-                        if(UARTCharsAvail(UART1_BASE))
+                        Write_Quadrature(FreValue);
+                        while(UARTCharsAvail(UART1_BASE))
                             Array_Count=UARTCharGet(UART1_BASE);
                         Array_Count = 0;
-                }                
+                        //???????,ADC????
+                        SamFlag = 1;   
+                }
+ 
 	}
-	
 }

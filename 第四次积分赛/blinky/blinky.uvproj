@@ -444,6 +444,11 @@
               <FileType>1</FileType>
               <FilePath>.\utils\ad9959.c</FilePath>
             </File>
+            <File>
+              <FileName>ads1115.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\utils\ads1115.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

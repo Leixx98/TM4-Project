@@ -21,3 +21,4 @@
 .\rvmdk\blinky.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\rvmdk\blinky.o: utils/buttons.h
 .\rvmdk\blinky.o: utils/ad9959.h
+.\rvmdk\blinky.o: utils/ads1115.h

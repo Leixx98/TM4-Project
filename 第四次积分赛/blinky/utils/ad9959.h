@@ -71,7 +71,7 @@ void Init_AD9959(void);
 void Write_frequence(u8 Channel,u32 Freq);
 void Write_Amplitude(u8 Channel, u16 Ampli);
 void Write_Phase(u8 Channel,u16 Phase);
-
+void Write_Quadrature(uint32_t Freq);
 
 
 
