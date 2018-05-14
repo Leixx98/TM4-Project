@@ -25,5 +25,9 @@ This is a repositories for Tm4123G project written in C.
 * Sending the amplifier and frequency value into the DDS AD9959 to change the signal
 * Showing the amplifier and frequency value in the screen
 
+### The Second Commit Function:
+* Add ADS1115 to sample the voltage
+
+
 
  
