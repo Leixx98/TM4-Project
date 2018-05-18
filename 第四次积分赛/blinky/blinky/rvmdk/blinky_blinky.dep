@@ -1,5 +1,5 @@
 Dependencies for Project 'blinky', Target 'blinky': (DO NOT MODIFY !)
-F (.\blinky.c)(0x5AFF10C9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\blinky --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\blinky.o --omf_browse .\rvmdk\blinky.crf --depend .\rvmdk\blinky.d)
+F (.\blinky.c)(0x5AFF585C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\blinky --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\blinky.o --omf_browse .\rvmdk\blinky.crf --depend .\rvmdk\blinky.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5AB10F27)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
