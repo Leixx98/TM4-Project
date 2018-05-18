@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 F:\Data\2018校赛及培训\第四次积分赛\代码\blinky\blinky\blinky.uvproj
-Project File Date:  05/14/2018
+Project File Date:  05/18/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -30,17 +30,22 @@ Rebuild target 'blinky'
 assembling startup_rvmdk.S...
 compiling uartstdio.c...
 compiling blinky.c...
-blinky.c(114): warning:  #550-D: variable "SamFlag"  was set but never used
-      uint8_t SamFlag=0;
-blinky.c: 1 warning, 0 errors
+blinky.c(122): warning:  #177-D: variable "x"  was declared but never referenced
+      uint8_t i,x='\"',f=0xff;
+blinky.c(124): warning:  #177-D: variable "KeyValue"  was declared but never referenced
+      uint8_t KeyValue;
+blinky.c(128): warning:  #177-D: variable "PhaValue"  was declared but never referenced
+  	uint16_t PhaValue=83;
+blinky.c: 3 warnings, 0 errors
 compiling buttons.c...
+compiling key.c...
 compiling ad9959.c...
 compiling ads1115.c...
 linking...
-Program Size: Code=14136 RO-data=876 RW-data=52 ZI-data=532  
+Program Size: Code=13180 RO-data=880 RW-data=52 ZI-data=3876  
 After Build - User command #1: fromelf --bin --output .\rvmdk\blinky.bin .\rvmdk\blinky.axf
-".\rvmdk\blinky.axf" - 0 Error(s), 1 Warning(s).
-Build Time Elapsed:  00:00:02
+".\rvmdk\blinky.axf" - 0 Error(s), 3 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -1,5 +1,5 @@
 Dependencies for Project 'blinky', Target 'blinky': (DO NOT MODIFY !)
-F (.\blinky.c)(0x5AFDDEF9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\blinky --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\blinky.o --omf_browse .\rvmdk\blinky.crf --depend .\rvmdk\blinky.d)
+F (.\blinky.c)(0x5AFE59B1)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\blinky --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\blinky.o --omf_browse .\rvmdk\blinky.crf --depend .\rvmdk\blinky.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5AB10F27)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
@@ -23,6 +23,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x588B8344)
 I (utils/buttons.h)(0x58417993)
 I (utils/ad9959.h)(0x5AF8DFFC)
 I (utils/ads1115.h)(0x5AF93D78)
+I (utils/key.h)(0x5AFDE62A)
 F (.\startup_rvmdk.S)(0x57AEA7FA)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary--pd "__UVISION_VERSION SETA 524"-o .\rvmdk\startup_rvmdk.o --depend .\rvmdk\startup_rvmdk.d)
 F (.\utils\uartstdio.c)(0x58417995)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\blinky --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\uartstdio.o --omf_browse .\rvmdk\uartstdio.crf --depend .\rvmdk\uartstdio.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
@@ -73,5 +74,17 @@ I (..\blinky\driverlib/pin_map.h)(0x57AEA7F3)
 I (..\blinky\driverlib/gpio.h)(0x57AEA7F3)
 I (..\blinky\utils/buttons.h)(0x58417993)
 I (..\blinky\utils/ads1115.h)(0x5AF93D78)
+F (.\utils\key.c)(0x5AFDE62A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\blinky --c99-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\Luminary-D__UVISION_VERSION="524" -Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RB1-o .\rvmdk\key.o --omf_browse .\rvmdk\key.crf --depend .\rvmdk\key.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5AB10F27)
+I (..\blinky\inc/hw_types.h)(0x57AEA808)
+I (..\blinky\inc/hw_memmap.h)(0x57AEA808)
+I (..\blinky\inc/hw_gpio.h)(0x57AEA808)
+I (..\blinky\driverlib/sysctl.h)(0x57AEA7F3)
+I (..\blinky\driverlib/rom.h)(0x57AEA7F3)
+I (..\blinky\driverlib/pin_map.h)(0x57AEA7F3)
+I (..\blinky\driverlib/gpio.h)(0x57AEA7F3)
+I (..\blinky\utils/buttons.h)(0x58417993)
+I (..\blinky\utils/key.h)(0x5AFDE62A)
 F (.\driverlib\rvmdk\driverlib.lib)(0x57AEA7F3)()
 F (.\readme.txt)(0x57AEA7FA)()

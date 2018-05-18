@@ -449,6 +449,11 @@
               <FileType>1</FileType>
               <FilePath>.\utils\ads1115.c</FilePath>
             </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\utils\key.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

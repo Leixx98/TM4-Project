@@ -27,6 +27,7 @@
 #include "utils/buttons.h"
 #include "utils/ad9959.h"
 #include "utils/ads1115.h"
+#include "utils/key.h"
 
 
 #ifdef DEBUG
@@ -36,9 +37,18 @@ __error__(char *pcFilename, uint32_t ui32Line)
 }
 #endif
 
+typedef struct 
+{
+    double DC1;
+    double DC2;
+} DC;
+
 int32_t t;
 uint8_t UART_Buffer[20];
 uint8_t Array_Count;
+uint8_t DrawLCD;
+uint8_t DC_Count;
+DC Voltage[210];
 
 //*****************************************************************************
 //
@@ -111,14 +121,14 @@ int main(void)
 
     uint8_t i,x='\"',f=0xff;
     //ADC?????
-    uint8_t SamFlag=0;
+    uint8_t KeyValue;
     //???????
     double ADC_Value1,ADC_Value2;
     uint16_t ADC_Temp;
-	uint16_t AmpValue=801;
 	uint16_t PhaValue=83;
-   	uint32_t FreValue=1000;
-    double AMP,AMP_Temp;
+   	uint32_t FreValue=10000;
+    uint32_t AMP;
+    double AMP_Temp;
 
 	//????
 	SysCtlClockSet(SYSCTL_SYSDIV_10| SYSCTL_USE_PLL| SYSCTL_OSC_MAIN |
@@ -141,76 +151,141 @@ int main(void)
 
     while(1)
 	{
-//		          if(SamFlag==1)
+//		          if(DrawLCD==1)
 //                 {
                         ADC_Temp = ADS1115_Getdata(2); 
                         ADC_Value1 = (ADC_Temp*12.281)/65536;        
-//                        UARTprintf("DC1:%d",ADC_Value1);
 
 
                         ADC_Temp = ADS1115_Getdata(3); 
                         ADC_Value2 = (ADC_Temp*12.281)/65536;        
-//                        UARTprintf("DC2:%d",ADC_Value2);
 //                     
-                        ADC_Value1= (ADC_Value1 - 1.556) / 3.50;
+                        ADC_Value1= (ADC_Value1 - 1.620) / 3.50;
                         ADC_Value1 = -ADC_Value1;
                      
-                        ADC_Value2= (ADC_Value2 - 1.513) / 3.40;
+                        ADC_Value2= (ADC_Value2 - 1.536) / 3.40;
                         ADC_Value2 = -ADC_Value2;
-                        
-                        AMP_Temp = (2*sqrt(pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0)))/0.25;
-                        AMP = 20*log10(AMP_Temp)-6;
-//                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
-                        printf("t2.txt=%c%.5f%c%c%c%c",x,AMP,x,f,f,f);
+                         
+                        Voltage[DC_Count].DC1 = ADC_Value1;
+                        Voltage[DC_Count].DC2 = ADC_Value2;
+                        DC_Count++;
+        
+                        if(DC_Count == 205)
+                        {
+                            printf("ref_stop%c%c%c",f,f,f);
+                            printf("cle 1,0%c%c%c",f,f,f);
+                            FreValue = 8000;
+                            for(i=0;i<45;i++)
+                            {
+                                AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
+                                AMP_Temp = 20*log10(AMP_Temp)-6;
+                                AMP = (uint32_t) AMP_Temp;
+                                
+                                FreValue+=2000;
+                                UARTprintf("Fre:%d,dB:%d\r\n",FreValue,AMP);
+        //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
+                                AMP = 250-AMP*5;
+                                printf("add 1,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 1,0,%d%c%c%c",AMP,f,f,f);
+                                
+                                
+                                
+                            }
+                            for(i=45;i<135;i++)
+                            {
+                                AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
+                                AMP_Temp = 20*log10(AMP_Temp)-6;
+                                AMP = (uint32_t) AMP_Temp;
+                               
+                                FreValue += 10000;
+                                UARTprintf("Fre:%d,dB:%d\r\n",FreValue,AMP);
+        //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
+                                 AMP = 250-AMP*5;
+                                printf("add 2,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 2,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 2,0,%d%c%c%c",AMP,f,f,f);
+                            }
+                            for(i=135;i<205;i++)
+                            {
+                                AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
+                                AMP_Temp = 20*log10(AMP_Temp)-6;
+                                AMP = (uint32_t) AMP_Temp;
+                                
+                                FreValue += 40000;
+                                UARTprintf("Fre:%d,dB:%d\r\n",FreValue,AMP);
+        //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
+                                AMP = 250-AMP*5;
+                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+                            }                            
+                            printf("ref_star%c%c%c",f,f,f);
+                            FreValue = 8000;
+                            DC_Count = 0;
+                        }
 //                        
-//                        printf("t2.txt=%c%.3f%c%c%c%c",x,ADC_Value1,x,f,f,f);   
-//                        printf("t3.txt=%c%.3f%c%c%c%c",x,ADC_Value2,x,f,f,f);
-                        SamFlag = 0;
+                        if(FreValue<100000)
+                            FreValue += 2000;
+                        else if(FreValue>100000&&FreValue<1000000)
+                            FreValue += 10000;
+                        else 
+                        {    
+                            FreValue += 40000;
+                            if(FreValue > 4000000)
+                                FreValue = 10000;
+                        }
+                        
+                        Write_Quadrature(FreValue);
+                        SysCtlDelay(4000000);
 //                 }
 
-               if(UARTCharsAvail(UART1_BASE))
-               {       
-                    while(UART_Buffer[Array_Count]!=0x0d)
-                    {
-                        Array_Count++;
-                        UART_Buffer[Array_Count] = UARTCharGet(UART1_BASE);
-                    }
-                       if(UART_Buffer[1]==0x0a)                
-                       {
-                           if(UART_Buffer[2]==0x01)
-                               AmpValue+=1;
-                           else if(UART_Buffer[2]==0x02)
-                               AmpValue-=1;
-                       }
-                       
-                        else if(UART_Buffer[1]==0x0b)
-                        {
-                            if(UART_Buffer[2]==0x01)
-                            {
-                                FreValue=0;
-                                for(i=0;i<Array_Count;i++)
-                                {
-                                  if(UART_Buffer[i]>47)
-                                        FreValue+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
-                                }
-                            }
-                            
-                            else if(UART_Buffer[2]==0x02)
-                            {
-                                PhaValue = 0;
-                                 for(i=0;i<Array_Count;i++)
-                                {
-                                  if(UART_Buffer[i]>47)
-                                       PhaValue +=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
-                                }
-                            }
-                        }
-                        Write_Quadrature(FreValue);
-                        while(UARTCharsAvail(UART1_BASE))
-                            Array_Count=UARTCharGet(UART1_BASE);
-                        Array_Count = 0;
-                        SamFlag = 1;   
-                }
+//               if(UARTCharsAvail(UART1_BASE))
+//               {       
+//                    while(UART_Buffer[Array_Count]!=0x0d)
+//                    {
+//                        Array_Count++;
+//                        UART_Buffer[Array_Count] = UARTCharGet(UART1_BASE);
+//                    }
+//                       if(UART_Buffer[1]==0x0a)                
+//                       {
+//                           if(UART_Buffer[2]==0x01)
+//                                KeyValue = 1;
+//                           else if(UART_Buffer[2]==0x02)
+//                                KeyValue = 2;
+//                           Key_State(KeyValue);
+//                           KeyValue = 0;
+//                       }
+//                       
+//                        else if(UART_Buffer[1]==0x0b)
+//                        {
+//                            if(UART_Buffer[2]==0x01)
+//                            {
+//                                FreValue=0;
+//                                for(i=0;i<Array_Count;i++)
+//                                {
+//                                  if(UART_Buffer[i]>47)
+//                                        FreValue+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
+//                                }
+//                            }
+//                            
+//                            else if(UART_Buffer[2]==0x02)
+//                            {
+//                                PhaValue = 0;
+//                                 for(i=0;i<Array_Count;i++)
+//                                {
+//                                  if(UART_Buffer[i]>47)
+//                                       PhaValue +=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
+//                                }
+//                            }
+//                        }
+//                        
+//                        Write_Quadrature(FreValue);
+//                        while(UARTCharsAvail(UART1_BASE))
+//                            Array_Count=UARTCharGet(UART1_BASE);
+//                        Array_Count = 0;
+//                }
  
 	}
 }

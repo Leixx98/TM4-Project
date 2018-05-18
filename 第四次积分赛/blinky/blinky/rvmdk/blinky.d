@@ -22,3 +22,4 @@
 .\rvmdk\blinky.o: utils/buttons.h
 .\rvmdk\blinky.o: utils/ad9959.h
 .\rvmdk\blinky.o: utils/ads1115.h
+.\rvmdk\blinky.o: utils/key.h

@@ -1,5 +1,0 @@
-Dependencies for Project 'blinky', Target 'blinky': (DO NOT MODIFY !)
-F (.\blinky.c)(0x582ED25C)()
-F (.\startup_rvmdk.S)(0x57AEA7FA)()
-F (.\driverlib\rvmdk\driverlib.lib)(0x57AEA7F3)()
-F (.\readme.txt)(0x57AEA7FA)()
