@@ -29,23 +29,25 @@ Project File Date:  05/18/2018
 Rebuild target 'blinky'
 assembling startup_rvmdk.S...
 compiling uartstdio.c...
-compiling blinky.c...
-blinky.c(122): warning:  #177-D: variable "x"  was declared but never referenced
-      uint8_t i,x='\"',f=0xff;
-blinky.c(124): warning:  #177-D: variable "KeyValue"  was declared but never referenced
-      uint8_t KeyValue;
-blinky.c(128): warning:  #177-D: variable "PhaValue"  was declared but never referenced
-  	uint16_t PhaValue=83;
-blinky.c: 3 warnings, 0 errors
 compiling buttons.c...
-compiling key.c...
+compiling blinky.c...
+blinky.c(124): warning:  #177-D: variable "x"  was declared but never referenced
+      uint8_t i,x='\"',f=0xff;
+blinky.c(126): warning:  #177-D: variable "KeyValue"  was declared but never referenced
+      uint8_t KeyValue,PHSFlag=1;
+blinky.c(126): warning:  #550-D: variable "PHSFlag"  was set but never used
+      uint8_t KeyValue,PHSFlag=1;
+blinky.c(130): warning:  #177-D: variable "PhaValue"  was declared but never referenced
+  	uint16_t PhaValue=83;
+blinky.c: 4 warnings, 0 errors
 compiling ad9959.c...
 compiling ads1115.c...
+compiling key.c...
 linking...
-Program Size: Code=13180 RO-data=880 RW-data=52 ZI-data=3876  
+Program Size: Code=15280 RO-data=1028 RW-data=52 ZI-data=3876  
 After Build - User command #1: fromelf --bin --output .\rvmdk\blinky.bin .\rvmdk\blinky.axf
-".\rvmdk\blinky.axf" - 0 Error(s), 3 Warning(s).
-Build Time Elapsed:  00:00:01
+".\rvmdk\blinky.axf" - 0 Error(s), 4 Warning(s).
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

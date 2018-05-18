@@ -37,6 +37,8 @@ __error__(char *pcFilename, uint32_t ui32Line)
 }
 #endif
 
+#define Pi 3.1415926
+
 typedef struct 
 {
     double DC1;
@@ -103,7 +105,7 @@ ConfigureUART(void)
     // Initialize the UART for console I/O.
     //
     UARTStdioConfig(0, 115200, 16000000);
-    UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),9600,
+    UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),115200,
                                               (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
                                               UART_CONFIG_PAR_NONE));
     UARTConfigSetExpClk(UART3_BASE,SysCtlClockGet(),115200,
@@ -121,17 +123,19 @@ int main(void)
 
     uint8_t i,x='\"',f=0xff;
     //ADC?????
-    uint8_t KeyValue;
+    uint8_t KeyValue,PHSFlag=1;
     //???????
     double ADC_Value1,ADC_Value2;
     uint16_t ADC_Temp;
 	uint16_t PhaValue=83;
    	uint32_t FreValue=10000;
     uint32_t AMP;
+    signed int PMP;
     double AMP_Temp;
-
+    double LPF_Offvol1,LPF_Offvol2;
+    double PMP_Temp,PMP_Init;
 	//????
-	SysCtlClockSet(SYSCTL_SYSDIV_10| SYSCTL_USE_PLL| SYSCTL_OSC_MAIN |
+	SysCtlClockSet(SYSCTL_SYSDIV_2_5| SYSCTL_USE_PLL| SYSCTL_OSC_MAIN |
 								SYSCTL_XTAL_16MHZ);
 	//????
 	ConfigureUART();
@@ -148,98 +152,222 @@ int main(void)
                          GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);	
 	//??
 	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
+    
+    //调零
+     Write_Quadrature(0);
+    ADC_Temp = ADS1115_Getdata(2); 
+    ADC_Value1 = (ADC_Temp*12.281)/65536;        
+
+    ADC_Temp = ADS1115_Getdata(3); 
+    ADC_Value2 = (ADC_Temp*12.281)/65536;      
+    
+    LPF_Offvol1 = ADC_Value1;
+    LPF_Offvol2 = ADC_Value2;
 
     while(1)
 	{
 //		          if(DrawLCD==1)
 //                 {
+        
                         ADC_Temp = ADS1115_Getdata(2); 
                         ADC_Value1 = (ADC_Temp*12.281)/65536;        
 
 
                         ADC_Temp = ADS1115_Getdata(3); 
                         ADC_Value2 = (ADC_Temp*12.281)/65536;        
-//                     
-                        ADC_Value1= (ADC_Value1 - 1.620) / 3.50;
+                     
+                        ADC_Value1= (ADC_Value1 - LPF_Offvol1) / 3.375;
                         ADC_Value1 = -ADC_Value1;
                      
-                        ADC_Value2= (ADC_Value2 - 1.536) / 3.40;
+                        ADC_Value2= (ADC_Value2 - LPF_Offvol2) / 3.35;
                         ADC_Value2 = -ADC_Value2;
                          
+                        
                         Voltage[DC_Count].DC1 = ADC_Value1;
                         Voltage[DC_Count].DC2 = ADC_Value2;
                         DC_Count++;
         
-                        if(DC_Count == 205)
+        
+                        if(DC_Count == 215)
                         {
                             printf("ref_stop%c%c%c",f,f,f);
                             printf("cle 1,0%c%c%c",f,f,f);
+                            printf("cle 2,0%c%c%c",f,f,f);
+                            printf("cle 3,0%c%c%c",f,f,f);
                             FreValue = 8000;
                             for(i=0;i<45;i++)
                             {
                                 AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
-                                AMP_Temp = 20*log10(AMP_Temp)-6;
+                                AMP_Temp = 20*log10(AMP_Temp)-6.5;
                                 AMP = (uint32_t) AMP_Temp;
+                                AMP = 255-AMP*3;
                                 
-                                FreValue+=2000;
-                                UARTprintf("Fre:%d,dB:%d\r\n",FreValue,AMP);
-        //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
-                                AMP = 250-AMP*5;
+                                if(Voltage[i].DC1<0&&Voltage[i].DC2>0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2)); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                                else if(Voltage[i].DC1<0&&Voltage[i].DC2<0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                               else if(Voltage[i].DC1>0&&Voltage[i].DC2>0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2)); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                                else if(Voltage[i].DC1>0&&Voltage[i].DC2<0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }    
+                                PMP_Temp -= PMP_Init;
+                                PMP = (signed int) PMP_Temp;
+                                if(PMP<0)
+                                    PMP+=360;
+                                PMP = PMP*0.7; 
+                                
                                 printf("add 1,0,%d%c%c%c",AMP,f,f,f);
                                 printf("add 1,0,%d%c%c%c",AMP,f,f,f);
-                                
-                                
-                                
+                                printf("add 1,1,%d%c%c%c",PMP,f,f,f);
+                                printf("add 1,1,%d%c%c%c",PMP,f,f,f);
+                                          
                             }
                             for(i=45;i<135;i++)
                             {
                                 AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
-                                AMP_Temp = 20*log10(AMP_Temp)-6;
+                                AMP_Temp = 20*log10(AMP_Temp)-6.5;
                                 AMP = (uint32_t) AMP_Temp;
-                               
-                                FreValue += 10000;
-                                UARTprintf("Fre:%d,dB:%d\r\n",FreValue,AMP);
-        //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
-                                 AMP = 250-AMP*5;
+                                AMP = 255-AMP*3;
+                                
+                                if(Voltage[i].DC1<0&&Voltage[i].DC2>0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2)); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                                else if(Voltage[i].DC1<0&&Voltage[i].DC2<0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                               else if(Voltage[i].DC1>0&&Voltage[i].DC2>0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2)); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                                else if(Voltage[i].DC1>0&&Voltage[i].DC2<0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }    
+                                if(i==0)
+                                    PMP_Init = PMP_Temp;
+                                PMP_Temp -= PMP_Init;
+                                PMP = (signed int) PMP_Temp;
+                                if(PMP<0)
+                                    PMP+=360;
+                                PMP = PMP*0.7; 
+                                
                                 printf("add 2,0,%d%c%c%c",AMP,f,f,f);
                                 printf("add 2,0,%d%c%c%c",AMP,f,f,f);
-                                printf("add 2,0,%d%c%c%c",AMP,f,f,f);
+                                printf("add 2,1,%d%c%c%c",PMP,f,f,f);
+                                printf("add 2,1,%d%c%c%c",PMP,f,f,f);
                             }
-                            for(i=135;i<205;i++)
+                            for(i=135;i<210;i++)
                             {
                                 AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
-                                AMP_Temp = 20*log10(AMP_Temp)-6;
-                                AMP = (uint32_t) AMP_Temp;
+                                AMP_Temp = 20*log10(AMP_Temp)-6.5;
+                                AMP = (uint32_t) AMP_Temp;                
+                                UARTprintf("AMp:%d\r\n",AMP);
+                                AMP = 255-AMP*3;
                                 
-                                FreValue += 40000;
-                                UARTprintf("Fre:%d,dB:%d\r\n",FreValue,AMP);
-        //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
-                                AMP = 250-AMP*5;
+                                if(Voltage[i].DC1<0&&Voltage[i].DC2>0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2)); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                                else if(Voltage[i].DC1<0&&Voltage[i].DC2<0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                               else if(Voltage[i].DC1>0&&Voltage[i].DC2>0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2)); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }
+                                
+                                else if(Voltage[i].DC1>0&&Voltage[i].DC2<0)
+                                {
+                                    PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;
+                                }    
+                                PMP_Temp -= PMP_Init;
+                                PMP = (signed int) PMP_Temp;
+                                if(PMP<0)
+                                    PMP+=360;
+                                PMP = PMP*0.7; 
+                                
                                 printf("add 3,0,%d%c%c%c",AMP,f,f,f);
                                 printf("add 3,0,%d%c%c%c",AMP,f,f,f);
-                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
-                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
-                                printf("add 3,0,%d%c%c%c",AMP,f,f,f);
-                            }                            
+                                printf("add 3,1,%d%c%c%c",PMP,f,f,f);
+                                printf("add 3,1,%d%c%c%c",PMP,f,f,f);
+
+                            }       
+                               
+//                            //消除最后图像画不完的影响
+//                            printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+//                            printf("add 3,0,%d%c%c%c",AMP,f,f,f); 
+//                            printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+//                            printf("add 3,0,%d%c%c%c",AMP,f,f,f);
+//                            printf("add 3,0,%d%c%c%c",AMP,f,f,f);
                             printf("ref_star%c%c%c",f,f,f);
                             FreValue = 8000;
                             DC_Count = 0;
-                        }
+                            
+                            //调零
+                            Write_Quadrature(0);
+                            ADC_Temp = ADS1115_Getdata(2); 
+                            ADC_Value1 = (ADC_Temp*12.281)/65536;        
+
+                            ADC_Temp = ADS1115_Getdata(3); 
+                            ADC_Value2 = (ADC_Temp*12.281)/65536;      
+                            
+                            LPF_Offvol1 = ADC_Value1;
+                            LPF_Offvol2 = ADC_Value2;
+                            SysCtlDelay(10000);
+                            
+                            PHSFlag = 1;
+                      }
 //                        
                         if(FreValue<100000)
+                        {
                             FreValue += 2000;
+                            SysCtlDelay(5000);
+                        }
                         else if(FreValue>100000&&FreValue<1000000)
+                        {
                             FreValue += 10000;
+                            SysCtlDelay(5000);
+                        }
                         else 
                         {    
                             FreValue += 40000;
-                            if(FreValue > 4000000)
+                            SysCtlDelay(5000);
+                            if(FreValue > 4400000)
                                 FreValue = 10000;
                         }
                         
                         Write_Quadrature(FreValue);
-                        SysCtlDelay(4000000);
-//                 }
 
 //               if(UARTCharsAvail(UART1_BASE))
 //               {       
@@ -289,3 +417,5 @@ int main(void)
  
 	}
 }
+
+
