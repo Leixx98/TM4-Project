@@ -176,7 +176,7 @@ int main(void)
     //???????,?????????????
 
 
-    uint8_t i,x='\"',f=0xff;
+    uint8_t i,x='\"',f=0xff,InitFlag=1,AMPLeftFlag=1,AMPRightFlag=1;
     double ADC_Value1,ADC_Value2;
     uint16_t ADC_Temp;
     signed int PMP,AMP;
@@ -213,6 +213,7 @@ int main(void)
     LPF_Offvol1 = ADC_Value1;
     LPF_Offvol2 = ADC_Value2;
 
+    UARTprintf("%d",SysCtlClockGet());
     while(1)
 	{
 		          if(DrawLCD==1)
@@ -245,8 +246,17 @@ int main(void)
                             FreValue = 8000;
                             for(i=0;i<45;i++)
                             {
+                                FreValue+=2000;
                                 AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
                                 AMP_Temp = 20*log10(AMP_Temp)-6.5;
+                                if(AMPLeftFlag)
+                                {
+                                    if(AMP_Temp > -5.5)
+                                    {
+                                        printf("t0.txt=%c%dHz%c%c%c%c",x,FreValue,x,f,f,f);
+                                        AMPLeftFlag = 0;
+                                    }
+                                }
                                 AMP = (uint32_t) AMP_Temp;
                                 AMP = 255-AMP*3;
                                 
@@ -272,8 +282,10 @@ int main(void)
                                 {
                                     PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
                                     PMP_Temp = (PMP_Temp*180)/Pi;
-                                }    
-                                PMP_Temp -= PMP_Init;
+                                }  
+                                if(i==0)
+                                    PMP_Init = PMP_Temp;                                
+                                PMP_Temp = PMP_Init - PMP_Temp;
                                 PMP = (signed int) PMP_Temp;
                                 if(PMP<0)
                                     PMP+=360;
@@ -290,8 +302,17 @@ int main(void)
                             }
                             for(i=45;i<135;i++)
                             {
+                                FreValue+=10000;
                                 AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
                                 AMP_Temp = 20*log10(AMP_Temp)-6.5;
+                                if(AMPRightFlag)
+                                {
+                                    if(AMP_Temp < -4.0)
+                                    {
+                                        printf("t1.txt=%c%dHz%c%c%c%c",x,FreValue,x,f,f,f);
+                                        AMPRightFlag = 0;
+                                    }
+                                }
                                 AMP = (uint32_t) AMP_Temp;
                                 AMP = 255-AMP*3;
                                 
@@ -318,9 +339,7 @@ int main(void)
                                     PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
                                     PMP_Temp = (PMP_Temp*180)/Pi;
                                 }    
-                                if(i==0)
-                                    PMP_Init = PMP_Temp;
-                                PMP_Temp -= PMP_Init;
+                                PMP_Temp = PMP_Init - PMP_Temp;
                                 PMP = (signed int) PMP_Temp;
                                 if(PMP<0)
                                     PMP+=360;
@@ -361,7 +380,7 @@ int main(void)
                                     PMP_Temp = atan(-(Voltage[i].DC1/Voltage[i].DC2))+Pi; 
                                     PMP_Temp = (PMP_Temp*180)/Pi;
                                 }    
-                                PMP_Temp -= PMP_Init;
+                                PMP_Temp = PMP_Init - PMP_Temp;
                                 PMP = (signed int) PMP_Temp;
                                 if(PMP<0)
                                     PMP+=360;
@@ -376,6 +395,7 @@ int main(void)
                             printf("ref_star%c%c%c",f,f,f);
                             FreValue = 8000;
                             DC_Count = 0;
+                            AMPLeftFlag=1;AMPRightFlag=1;
                             
                             //µ÷Áã
                             Write_Quadrature(0);
@@ -394,6 +414,8 @@ int main(void)
                         if(FreValue<100000)
                         {
                             FreValue += 2000;
+                            if(FreValue == 10000)
+                               SysCtlDelay(5000);
                             SysCtlDelay(5000);
                         }
                         else if(FreValue>100000&&FreValue<1000000)
@@ -414,58 +436,21 @@ int main(void)
                  
                 if(DrawPoint == 1)
                 {
-                            //µ÷Áã
-//                         Write_Quadrature(0);
-//                        ADC_Temp = ADS1115_Getdata(2); 
-//                        ADC_Value1 = (ADC_Temp*12.281)/65536;        
+                        if(InitFlag)
+                        {
+                            Write_Quadrature(0);
+                            SysCtlDelay(500000);
+                            ADC_Temp = ADS1115_Getdata(2); 
+                            ADC_Value1 = (ADC_Temp*12.281)/65536;        
 
-//                        ADC_Temp = ADS1115_Getdata(3); 
-//                        ADC_Value2 = (ADC_Temp*12.281)/65536;      
-//                        
-//                        LPF_Offvol1 = ADC_Value1;
-//                        LPF_Offvol2 = ADC_Value2;
-                        
-                        Write_Quadrature(10000);
-                         ADC_Temp = ADS1115_Getdata(2); 
-                        ADC_Value1 = (ADC_Temp*12.281)/65536;        
-
-                        ADC_Temp = ADS1115_Getdata(3); 
-                        ADC_Value2 = (ADC_Temp*12.281)/65536;        
-
-                     
-                        ADC_Value1= (ADC_Value1 - LPF_Offvol1) / 3.375;
-                        ADC_Value1 = -ADC_Value1;
-                     
-                        ADC_Value2= (ADC_Value2 - LPF_Offvol2) / 3.35;
-                        ADC_Value2 = -ADC_Value2;
-        
-                    
-                        if(ADC_Value1<0&&ADC_Value2>0)
-                        {
-                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2)); 
-                            PMP_Temp = (PMP_Temp*180)/Pi;
+                            ADC_Temp = ADS1115_Getdata(3); 
+                            ADC_Value2 = (ADC_Temp*12.281)/65536;      
+                            
+                            LPF_Offvol1 = ADC_Value1;
+                            LPF_Offvol2 = ADC_Value2;
+                            
+                            InitFlag=0;
                         }
-                        
-                        else if(ADC_Value1<0&&ADC_Value2<0)
-                        {
-                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2))+Pi; 
-                            PMP_Temp = (PMP_Temp*180)/Pi;
-                        }
-                        
-                       else if(ADC_Value1>0&&ADC_Value2>0)
-                        {
-                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2)); 
-                            PMP_Temp = (PMP_Temp*180)/Pi;
-                        }
-                        
-                        else if(ADC_Value1>0&&ADC_Value2<0)
-                        {
-                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2))-Pi; 
-                            PMP_Temp = (PMP_Temp*180)/Pi;
-                        }
-                        
-                            PMP_Init = PMP_Temp;
-                            Write_Quadrature(FreValue);      
                     
                          ADC_Temp = ADS1115_Getdata(2); 
                         ADC_Value1 = (ADC_Temp*12.281)/65536;        
@@ -481,8 +466,7 @@ int main(void)
                         ADC_Value2 = -ADC_Value2;
         
                         AMP_Temp = (2*sqrt(pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0)))/0.25;
-                        AMP_Temp = 20*log10(AMP_Temp);
-                        AMP = (signed int) AMP_Temp;
+                        AMP_Temp = 20*log10(AMP_Temp)-4.8;
                         
                         if(ADC_Value1<0&&ADC_Value2>0)
                         {
@@ -504,18 +488,19 @@ int main(void)
                         
                         else if(ADC_Value1>0&&ADC_Value2<0)
                         {
-                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2))-Pi; 
+                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2))+Pi; 
                             PMP_Temp = (PMP_Temp*180)/Pi;
                         }
 //                        AMP_Temp = pow(ADC_Value1,2.0)+pow(ADC_Value2,2.0);
-                        PMP_Temp -= PMP_Init;
-                        PMP = (signed int) PMP_Temp;
-                        if(PMP< 0   )
-                            PMP += 360;
+                            PMP_Temp = PMP_Init - PMP_Temp;
+                            if(PMP_Temp<0)
+                                PMP_Temp+=360;
                         
-                        printf("t3.txt=%c%d%c%c%c%c",x,PMP,x,f,f,f);
-                        printf("t2.txt=%c%d%c%c%c%c",x,AMP,x,f,f,f);
+                        printf("t3.txt=%c%.2f%c%c%c%c",x,PMP_Temp,x,f,f,f);
+                        printf("t2.txt=%c%.2f%c%c%c%c",x,AMP_Temp,x,f,f,f);
+                            
                 }
+                
                 
                if(UARTCharsAvail(UART1_BASE))
                {       
@@ -545,11 +530,55 @@ int main(void)
                             }
                             
                         }
+                        
+                       
+                        Write_Quadrature(10000);
+                        SysCtlDelay(50000);
+                         ADC_Temp = ADS1115_Getdata(2); 
+                        ADC_Value1 = (ADC_Temp*12.281)/65536;        
+
+                        ADC_Temp = ADS1115_Getdata(3); 
+                        ADC_Value2 = (ADC_Temp*12.281)/65536;        
                         Write_Quadrature(FreValue);
-                        while(UARTCharsAvail(UART1_BASE))
+                     
+                        ADC_Value1= (ADC_Value1 - LPF_Offvol1) / 3.375;
+                        ADC_Value1 = -ADC_Value1;
+                     
+                        ADC_Value2= (ADC_Value2 - LPF_Offvol2) / 3.35;
+                        ADC_Value2 = -ADC_Value2;
+        
+                    
+                        if(ADC_Value1<0&&ADC_Value2>0)
+                        {
+                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2)); 
+                            PMP_Temp = (PMP_Temp*180)/Pi;
+                        }
+                        
+                        else if(ADC_Value1<0&&ADC_Value2<0)
+                        {
+                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2))+Pi; 
+                            PMP_Temp = (PMP_Temp*180)/Pi;
+                        }
+                        
+                       else if(ADC_Value1>0&&ADC_Value2>0)
+                        {
+                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2)); 
+                            PMP_Temp = (PMP_Temp*180)/Pi;
+                        }
+                        
+                        else if(ADC_Value1>0&&ADC_Value2<0)
+                        {
+                            PMP_Temp = atan(-(ADC_Value1/ADC_Value2))+Pi; 
+                            PMP_Temp = (PMP_Temp*180)/Pi;
+                        }
+                        
+                            PMP_Init = PMP_Temp;    
+                        
+                            UARTprintf("%d\r\n",FreValue);                
+                            Write_Quadrature(FreValue);     
+                            while(UARTCharsAvail(UART1_BASE))
                             Array_Count=UARTCharGet(UART1_BASE);
-                        UARTRxErrorClear(UART1_BASE);
-                        Array_Count = 0; 
+                            Array_Count = 0; 
                 }
                 
              
