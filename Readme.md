@@ -24,9 +24,14 @@ This is a repositories for Tm4123G project written in C.
 * Communicating with the HMI by UART to change the amplifier and frequency value
 * Sending the amplifier and frequency value into the DDS AD9959 to change the signal
 * Showing the amplifier and frequency value in the screen
+### The Final Commit:
+* It includes two commits,the first is presented by simulation and the second is presented by FPGA
+* Communicating with the HMI by UART to change the amplifier and frequency value
+* Sending the amplifier and frequency value into the DDS AD9959 to change the signal
+* Showing the  amplitude-frequency characteristic and phase-frequency characteristic value in the screen
+* Draw the amplitude-frequency characteristic and phase-frequency characteristic in the screen with the frequency bewteen the 10k to 400k
 
-### The Second Commit Function:
-* Add ADS1115 to sample the voltage
+
 
 
 
