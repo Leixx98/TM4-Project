@@ -35,13 +35,21 @@ __error__(char *pcFilename, uint32_t ui32Line)
 }
 #endif
 
+
+typedef struct 
+{
+    double DC1;
+    double DC2;
+} DC;
+
 #define Pi  3.1415926;
 
 int32_t t;
-uint8_t UART_Buffer[20];
-uint8_t UART3_Buffer[8];
-uint8_t Array_Count;
-uint8_t Array3_Count;
+uint8_t UART_Buffer[90];
+uint8_t UART3_Buffer[100];
+uint8_t Array_Count,Watch;
+uint16_t i;
+DC Voltage[250];
 //*****************************************************************************
 //
 // Delay for the specified number of seconds.  Depending upon the current
@@ -98,7 +106,7 @@ ConfigureUART(void)
     UARTConfigSetExpClk(UART1_BASE,SysCtlClockGet(),115200,
                                               (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
                                               UART_CONFIG_PAR_NONE));
-    UARTConfigSetExpClk(UART3_BASE,SysCtlClockGet(),921600,
+    UARTConfigSetExpClk(UART3_BASE,SysCtlClockGet(),115200,
                                               (UART_CONFIG_WLEN_8|UART_CONFIG_STOP_ONE|
                                               UART_CONFIG_PAR_NONE));                                          
 }
@@ -108,17 +116,26 @@ ConfigureUART(void)
 //主函数
 int main(void)
 {
-    uint8_t i,x='\"',f=0xff;
-    uint8_t FreFlag,PhaFlag,UART3Flag;
+    uint8_t x='\"',f=0xff;
+    uint8_t RecFlag;
+    uint16_t i;
+    uint8_t DrawLCD,DrawPoint;
     uint8_t data0,data1,data2,data3;
-    uint16_t AmpValue=801;
-    uint32_t FreValue,FreN,PhaN;
+    uint16_t AmpValue=801,Array3_Count,Count,DC_Count;
+    uint32_t FreValue=8000,FreN,PhaN;
     double PhaValue;
-    double ReciValue,RecqValue;
+    signed short int ReciValue,RecqValue;
     double ShowValue;
+    signed int LCDShow;
+    signed int PMP,AMP;
+    double AMP_Temp,PMP_Temp,PMP_Theory;
+
 	//设置时钟
 	SysCtlClockSet(SYSCTL_SYSDIV_10| SYSCTL_USE_PLL| SYSCTL_OSC_MAIN |
 								SYSCTL_XTAL_16MHZ);
+    //打开FPU
+    FPULazyStackingEnable();
+    FPUEnable();
 	//配置串口
 	ConfigureUART();
     //AD9959初始化
@@ -132,9 +149,10 @@ int main(void)
                          GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);	
 	//点灯
 	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-	while(1)
+    
+		while(1)
 	{
-               //捕捉到了数据头
+               //???????
                if(UARTCharsAvail(UART1_BASE))
                {       
                     while(UART_Buffer[Array_Count]!=0x0d)
@@ -145,9 +163,9 @@ int main(void)
                        if(UART_Buffer[1]==0x0a)                
                        {
                            if(UART_Buffer[2]==0x01)
-                               AmpValue+=1;
+                               DrawLCD=1-DrawLCD;
                            else if(UART_Buffer[2]==0x02)
-                               AmpValue-=1;
+                               DrawPoint=1-DrawPoint;
                        }
                        
                         else if(UART_Buffer[1]==0x0b)
@@ -159,93 +177,203 @@ int main(void)
                                 {
                                   if(UART_Buffer[i]>47)
                                         FreValue+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
-                                        FreN = (FreValue*4294967296)/200000000;
                                 }
-                                FreFlag = 1;
+                                FreN = (FreValue*4294967296)/200000000;
+                                data0 = (uint8_t)(FreN>>24);
+                                data1 = (uint8_t)(FreN>>16);
+                                data2 = (uint8_t)(FreN>>8);
+                                data3 = (uint8_t)FreN;
+                      
+                                UARTCharPut(UART3_BASE,0x01);
+                                UARTCharPut(UART3_BASE,(uint8_t)data0);
+                                UARTCharPut(UART3_BASE,(uint8_t)data1);
+                                UARTCharPut(UART3_BASE,(uint8_t)data2);
+                                UARTCharPut(UART3_BASE,(uint8_t)data3);
+                                
+                                printf("t1.txt=%c%d%c%c%c%c",x,FreValue,x,f,f,f);
+                                
+                                
                             }
-                             else if(UART_Buffer[2]==0x02)
-                            {
-                                PhaValue = 0;
-                                 for(i=0;i<Array_Count;i++)
-                                {
-                                  if(UART_Buffer[i]>47)
-                                       PhaValue +=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
-                                       PhaN = (PhaValue/180)*512;
-                                }
-                                PhaFlag = 1;
-                            }
-//                            FreValue=0;
-//                            for(i=0;i<Array_Count;i++)
-//                            {
-//                              if(UART_Buffer[i]>47)
-//                                    FreValue+=(UART_Buffer[i]-48)*(pow(10,(Array_Count-i-1)));
-//                                    FreN = (FreValue*4294967296)/200000000;
-//                                    Samplefre = 20000000/FreValue;
-//                            }
                         }
-//                        UARTprintf(" %d ",AmpValue);
-//                        UARTprintf(" %d ",FreValue);      
-//                        Write_Amplitude(1,AmpValue);
-//                        Write_frequence(1,FreValue);    
-
-                        
+                    
                         while(UARTCharsAvail(UART1_BASE))
                             Array_Count=UARTCharGet(UART1_BASE);
                         Array_Count = 0;
                 }
-                  
-                 if(FreFlag==1&&PhaFlag==1)
-                 {
-                    data0 = (uint8_t)(FreN>>24);
-                    data1 = (uint8_t)(FreN>>16);
-                    data2 = (uint8_t)(FreN>>8);
-                    data3 = (uint8_t)FreN;
-                  
-                    UARTCharPut(UART3_BASE,0x01);
-                    UARTCharPut(UART3_BASE,(uint8_t)data0);
-                    UARTCharPut(UART3_BASE,(uint8_t)data1);
-                    UARTCharPut(UART3_BASE,(uint8_t)data2);
-                    UARTCharPut(UART3_BASE,(uint8_t)data3);
-                    
-                    data0 = (uint8_t)(PhaN>>24);
-                    data1 = (uint8_t)(PhaN>>16);
-                    data2 = (uint8_t)(PhaN>>8);
-                    data3 = (uint8_t)PhaN;
-                    
-                    UARTCharPut(UART3_BASE,(uint8_t)data0);
-                    UARTCharPut(UART3_BASE,(uint8_t)data1);
-                    UARTCharPut(UART3_BASE,(uint8_t)data2);
-                    UARTCharPut(UART3_BASE,(uint8_t)data3);
-                     
-                     FreFlag = 0;
-                     PhaFlag = 0;
-                 }
+               
+                     if(DrawLCD==1)
+                     {
                          
-                if(UARTCharsAvail(UART3_BASE))
-                {
-                       for(i=0;i<4;i++)
-                        UART3_Buffer[i] = UARTCharGet(UART3_BASE);
-                       UART3Flag = 1;
-                }
-                
-                if(UART3Flag==1)
-                {
-                       for(i=0;i<4;i++)
+                          if(FreValue<100000)
                         {
-                            UARTCharPut(UART3_BASE,(uint8_t)UART3_Buffer[i]);
+                            FreValue += 2000;
                         }
-                        Array3_Count = 0;
-                      ReciValue = (signed short int)(UART3_Buffer[0] << 8) | (signed short int) UART3_Buffer[1];
-                      RecqValue =(signed short int)(UART3_Buffer[2] << 8) | (signed short int) UART3_Buffer[3];
-                      ShowValue = atan2(ReciValue,RecqValue)*180/Pi;
+                        else if(FreValue>100000&&FreValue<1000000)
+                        {
+                            FreValue += 10000;
+                        }
+                        else 
+                        {    
+                            FreValue += 40000;
+                            if(FreValue > 4400000)
+                            {
+                                FreValue = 8000;
+                            }
+                        }
                         
-                      printf("t2.txt=%c%.3f%c%c%c%c",x,ShowValue,x,f,f,f);
+                        FreN = (FreValue*4294967296)/200000000;
+                        data0 = (uint8_t)(FreN>>24);
+                        data1 = (uint8_t)(FreN>>16);
+                        data2 = (uint8_t)(FreN>>8);
+                        data3 = (uint8_t)FreN;
+                      
+                        UARTCharPut(UART3_BASE,0x01);
+                        UARTCharPut(UART3_BASE,(uint8_t)data0);
+                        UARTCharPut(UART3_BASE,(uint8_t)data1);
+                        UARTCharPut(UART3_BASE,(uint8_t)data2);
+                        UARTCharPut(UART3_BASE,(uint8_t)data3);
+                        
+                        
+                       while(!UARTCharsAvail(UART3_BASE));
+                        
+                      if(UARTCharsAvail(UART3_BASE))
+                      {
+                                    while(RecFlag!=2)
+                                    {
+                                        Array3_Count++;
+                                        UART3_Buffer[Array3_Count] = UARTCharGet(UART3_BASE);
+                                        if(UART3_Buffer[Array3_Count]==0xab || UART3_Buffer[Array3_Count]==0xcd)
+                                            RecFlag++;
+                                    }
+                                    while(UARTCharsAvail(UART3_BASE))
+                                        RecFlag = UARTCharGet(UART3_BASE);
+                                        RecFlag = 0;
+                            
+                            ReciValue = (signed short int)(UART3_Buffer[Array3_Count-5] << 8) | (signed short int) UART3_Buffer[Array3_Count-4];
+                            RecqValue =(signed short int)(UART3_Buffer[Array3_Count-3] << 8) | (signed short int) UART3_Buffer[Array3_Count-2];
+                                                     
+                            Array3_Count = 0;
+                          
+                            Voltage[DC_Count].DC1 = ReciValue;
+                            Voltage[DC_Count].DC2 = RecqValue;
+                            DC_Count++;
+                            
+                            SysCtlDelay(10000);
+                            
+                          if(DC_Count==210)
+                           {
+                                FreValue = 10000;
+                                printf("ref_stop%c%c%c",f,f,f);
+                                printf("cle 1,0%c%c%c",f,f,f);
+                                printf("cle 2,0%c%c%c",f,f,f);
+                                printf("cle 3,0%c%c%c",f,f,f);
+                               for(i=0;i<45;i++)
+                               {
+                                    PMP_Temp = atan2(Voltage[i].DC1,Voltage[i].DC2); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;                                        
+                                     PMP = (signed int) PMP_Temp;
+                                    if(PMP<0)
+                                        PMP+=360;
+                                    PMP = PMP*0.7;       
+                                    
+                                    UARTprintf("%d\n",PMP);
+                                    printf("add 1,0,%d%c%c%c",PMP,f,f,f);
+                                    printf("add 1,0,%d%c%c%c",PMP,f,f,f);
+                                    printf("add 1,0,%d%c%c%c",PMP,f,f,f);
+                                    printf("add 1,0,%d%c%c%c",PMP,f,f,f);        
 
-                      UART3Flag = 0;
+                                    FreValue += 2000;
+                               }
+                               
+                               for(i=45;i<135;i++)
+                               {
+                                    PMP_Temp = atan2(Voltage[i].DC1,Voltage[i].DC2); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;                             
+                                     PMP = (signed int) PMP_Temp;
+                                    if(PMP<0)
+                                        PMP+=360;
+                                    PMP = PMP*0.7;       
+                                    
+                                    UARTprintf("%d\n",PMP);
+                                    printf("add 2,0,%d%c%c%c",PMP,f,f,f);
+                                    printf("add 2,0,%d%c%c%c",PMP,f,f,f);                  
+
+                                     FreValue += 10000;
+                               }
+                               
+                               for(i=135;i<210;i++)
+                               {
+                                    PMP_Temp = atan2(Voltage[i].DC1,Voltage[i].DC2); 
+                                    PMP_Temp = (PMP_Temp*180)/Pi;                                     
+                                     PMP = (signed int) PMP_Temp;
+                                    if(PMP<0)
+                                        PMP+=360;
+                                    PMP = PMP*0.7;       
+                                    
+                                    UARTprintf("%d\n",PMP);
+                                    printf("add 3,0,%d%c%c%c",PMP,f,f,f);
+                                    printf("add 3,0,%d%c%c%c",PMP,f,f,f);    
+
+                                     FreValue += 40000;
+                               }
+                               printf("ref_star%c%c%c",f,f,f);
+                               DC_Count = 0;
+                               FreValue = 8000;
+                               
+                               SysCtlDelay(10000);
+                           }
+                    }
+                      
+                 }  
+                     
+                if(DrawPoint == 1)
+                {
+                                data0 = (uint8_t)(FreN>>24);
+                                data1 = (uint8_t)(FreN>>16);
+                                data2 = (uint8_t)(FreN>>8);
+                                data3 = (uint8_t)FreN;
+                              
+                                UARTCharPut(UART3_BASE,0x01);
+                                UARTCharPut(UART3_BASE,(uint8_t)data0);
+                                UARTCharPut(UART3_BASE,(uint8_t)data1);
+                                UARTCharPut(UART3_BASE,(uint8_t)data2);
+                                UARTCharPut(UART3_BASE,(uint8_t)data3);
+
+                    
+                               if(UARTCharsAvail(UART3_BASE))
+                               {
+                                    while(RecFlag!=2)
+                                    {
+                                        Array3_Count++;
+                                        UART3_Buffer[Array3_Count] = UARTCharGet(UART3_BASE);
+                                        if(UART3_Buffer[Array3_Count]==0xab || UART3_Buffer[Array3_Count]==0xcd)
+                                            RecFlag++;
+                                    }
+                                         while(UARTCharsAvail(UART3_BASE))
+                                            RecFlag = UARTCharGet(UART3_BASE);
+                                        RecFlag = 0;
+                                        RecFlag = 0;
+
+                                        ReciValue = (signed short int)(UART3_Buffer[Array3_Count-5] << 8) | (signed short int) UART3_Buffer[Array3_Count-4];
+                                        RecqValue =(signed short int)(UART3_Buffer[Array3_Count-3] << 8) | (signed short int) UART3_Buffer[Array3_Count-2];
+                                             
+                                        Array3_Count = 0;
+                                                                  
+                                        PMP_Temp = atan2(ReciValue,RecqValue);
+                                        PMP_Temp = (PMP_Temp*180)/Pi;    
+                                         PMP = (signed int) PMP_Temp;
+                                        if(PMP<0)
+                                            PMP+=360;
+                                        
+                                        printf("t3.txt=%c%d%c%c%c%c",x,PMP,x,f,f,f); 
+                                        UARTprintf("TSET");
+                                        DrawPoint = 1;
+                                        
+                                        SysCtlDelay(1000000);
+                              }           
+                                         
                 }
-                
-                
-                 
-	}
-	
+    }
 }
+
+
