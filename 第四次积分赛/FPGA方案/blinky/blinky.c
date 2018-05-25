@@ -235,7 +235,7 @@ int main(void)
                         
                         
                        while(!UARTCharsAvail(UART3_BASE));
-                        
+                        SysCtlDelay(1000                                                                                                              );
                       if(UARTCharsAvail(UART3_BASE))
                       {
                                     while(RecFlag!=2)
@@ -269,6 +269,12 @@ int main(void)
                                 printf("cle 3,0%c%c%c",f,f,f);
                                for(i=0;i<45;i++)
                                {
+                                   
+                                    AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
+                                    AMP_Temp = 20*log10(AMP_Temp);
+                                    AMP = (uint32_t) AMP_Temp;
+                                    AMP = AMP*3;    
+                                   
                                     PMP_Temp = atan2(Voltage[i].DC1,Voltage[i].DC2); 
                                     PMP_Temp = (PMP_Temp*180)/Pi;                                        
                                      PMP = (signed int) PMP_Temp;
@@ -281,12 +287,23 @@ int main(void)
                                     printf("add 1,0,%d%c%c%c",PMP,f,f,f);
                                     printf("add 1,0,%d%c%c%c",PMP,f,f,f);
                                     printf("add 1,0,%d%c%c%c",PMP,f,f,f);        
+                                    
+                                    printf("add 1,1,%d%c%c%c",AMP,f,f,f);
+                                    printf("add 1,1,%d%c%c%c",AMP,f,f,f);
+                                    printf("add 1,1,%d%c%c%c",AMP,f,f,f);
+                                    printf("add 1,1,%d%c%c%c",AMP,f,f,f);        
 
                                     FreValue += 2000;
                                }
                                
                                for(i=45;i<135;i++)
                                {
+                                   
+                                    AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
+                                    AMP_Temp = 20*log10(AMP_Temp);
+                                    AMP = (uint32_t) AMP_Temp;
+                                    AMP = AMP*3;    
+                                   
                                     PMP_Temp = atan2(Voltage[i].DC1,Voltage[i].DC2); 
                                     PMP_Temp = (PMP_Temp*180)/Pi;                             
                                      PMP = (signed int) PMP_Temp;
@@ -296,13 +313,22 @@ int main(void)
                                     
                                     UARTprintf("%d\n",PMP);
                                     printf("add 2,0,%d%c%c%c",PMP,f,f,f);
-                                    printf("add 2,0,%d%c%c%c",PMP,f,f,f);                  
+                                    printf("add 2,0,%d%c%c%c",PMP,f,f,f);     
+
+                                    printf("add 2,1,%d%c%c%c",AMP,f,f,f);
+                                    printf("add 2,1,%d%c%c%c",AMP,f,f,f);                                         
 
                                      FreValue += 10000;
                                }
                                
                                for(i=135;i<210;i++)
                                {
+                                   
+                                    AMP_Temp = (2*sqrt(pow(Voltage[i].DC1,2.0)+pow(Voltage[i].DC2,2.0)))/0.25;
+                                    AMP_Temp = 20*log10(AMP_Temp);
+                                    AMP = (uint32_t) AMP_Temp;
+                                    AMP = AMP*3;    
+                                   
                                     PMP_Temp = atan2(Voltage[i].DC1,Voltage[i].DC2); 
                                     PMP_Temp = (PMP_Temp*180)/Pi;                                     
                                      PMP = (signed int) PMP_Temp;
@@ -312,7 +338,10 @@ int main(void)
                                     
                                     UARTprintf("%d\n",PMP);
                                     printf("add 3,0,%d%c%c%c",PMP,f,f,f);
-                                    printf("add 3,0,%d%c%c%c",PMP,f,f,f);    
+                                    printf("add 3,0,%d%c%c%c",PMP,f,f,f);   
+
+                                    printf("add 3,1,%d%c%c%c",AMP,f,f,f);
+                                    printf("add 3,1,%d%c%c%c",AMP,f,f,f);                                       
 
                                      FreValue += 40000;
                                }
