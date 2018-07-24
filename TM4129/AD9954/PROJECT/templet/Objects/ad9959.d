@@ -1,0 +1,11 @@
+.\objects\ad9959.o: functions\ad9959.c
+.\objects\ad9959.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\ad9959.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ad9959.o: ..\templet\inc/hw_types.h
+.\objects\ad9959.o: ..\templet\inc/hw_memmap.h
+.\objects\ad9959.o: ..\templet\inc/hw_gpio.h
+.\objects\ad9959.o: ..\templet\driverlib/sysctl.h
+.\objects\ad9959.o: ..\templet\driverlib/rom.h
+.\objects\ad9959.o: ..\templet\driverlib/pin_map.h
+.\objects\ad9959.o: ..\templet\driverlib/gpio.h
+.\objects\ad9959.o: ..\templet\functions/ad9959.h
