@@ -21,7 +21,7 @@ Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-C:\Users\xxlei\Desktop\FPGA数字方案画图\blinky\blinky.uvproj
+F:\Data\2018校赛及培训\第四次积分赛\代码\FPGA数字方案画图\blinky\blinky.uvproj
 Project File Date:  05/06/2018
 
 <h2>Output:</h2>
@@ -43,14 +43,18 @@ blinky.c(128): warning:  #177-D: variable "ShowValue"  was declared but never re
       double ShowValue;
 blinky.c(129): warning:  #177-D: variable "LCDShow"  was declared but never referenced
       signed int LCDShow;
+blinky.c(130): warning:  #177-D: variable "AMP"  was declared but never referenced
+      signed int PMP,AMP;
+blinky.c(131): warning:  #177-D: variable "AMP_Temp"  was declared but never referenced
+      double AMP_Temp,PMP_Temp,PMP_Theory;
 blinky.c(131): warning:  #177-D: variable "PMP_Theory"  was declared but never referenced
       double AMP_Temp,PMP_Temp,PMP_Theory;
-blinky.c: 7 warnings, 0 errors
+blinky.c: 9 warnings, 0 errors
 compiling ad9959.c...
 linking...
-Program Size: Code=14828 RO-data=1032 RW-data=32 ZI-data=4704  
+Program Size: Code=12800 RO-data=972 RW-data=32 ZI-data=4704  
 After Build - User command #1: fromelf --bin --output .\rvmdk\blinky.bin .\rvmdk\blinky.axf
-".\rvmdk\blinky.axf" - 0 Error(s), 7 Warning(s).
+".\rvmdk\blinky.axf" - 0 Error(s), 9 Warning(s).
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
