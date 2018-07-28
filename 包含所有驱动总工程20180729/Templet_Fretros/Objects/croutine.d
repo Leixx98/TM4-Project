@@ -1,0 +1,14 @@
+.\objects\croutine.o: Freetros\croutine.c
+.\objects\croutine.o: .\Freetros\include\FreeRTOS.h
+.\objects\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\croutine.o: .\Freetros\include\FreeRTOSConfig.h
+.\objects\croutine.o: .\Freetros\include\projdefs.h
+.\objects\croutine.o: .\Freetros\include\portable.h
+.\objects\croutine.o: .\Freetros\include\deprecated_definitions.h
+.\objects\croutine.o: .\Freetros\portable\RVDS\ARM_CM4F\portmacro.h
+.\objects\croutine.o: .\Freetros\include\mpu_wrappers.h
+.\objects\croutine.o: .\Freetros\include\task.h
+.\objects\croutine.o: .\Freetros\include\list.h
+.\objects\croutine.o: .\Freetros\include\croutine.h
+.\objects\croutine.o: .\Freetros\include\list.h

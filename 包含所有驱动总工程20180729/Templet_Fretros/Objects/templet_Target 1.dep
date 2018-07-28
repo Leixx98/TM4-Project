@@ -1,0 +1,771 @@
+Dependencies for Project 'templet', Target 'Target 1': (DO NOT MODIFY !)
+F (.\user\startup_rvmdk.S)(0x5B588B0E)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129--pd "__UVISION_VERSION SETA 514" --pd "TM4C1294NCPDT SETA 1"--list .\listings\startup_rvmdk.lst --xref -o .\objects\startup_rvmdk.o --depend .\objects\startup_rvmdk.d)
+F (.\user\blinky.c)(0x5B566B9F)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\blinky.o --omf_browse .\objects\blinky.crf --depend .\objects\blinky.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/timer.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+I (..\Templet_Fretros\functions/tim.h)(0x5B4341D3)
+I (..\Templet_Fretros\functions/key.h)(0x5B46068A)
+I (..\Templet_Fretros\functions/ads1256.h)(0x5B4B8C71)
+I (..\Templet_Fretros\functions/taskinit.h)(0x5B58898C)
+I (..\Templet_Fretros\functions/ad9959.h)(0x5B4B97A7)
+I (..\Templet_Fretros\functions/ads1115.h)(0x5B4DD822)
+I (..\Templet_Fretros\functions/dac5618.h)(0x5B4DE964)
+I (..\Templet_Fretros\functions/dac8811.h)(0x5B4BC6CE)
+I (..\Templet_Fretros\functions/ads11152.h)(0x5B4DE37B)
+I (..\Templet_Fretros\functions/dac56182.h)(0x5B4DE96A)
+I (..\Templet_Fretros\functions/dac8501.h)(0x5B4DF4C1)
+I (..\Templet_Fretros\functions/fpga.h)(0x5B5014EC)
+I (..\Templet_Fretros\functions/fpgadrawline.h)(0x5B5044BD)
+I (..\Templet_Fretros\functions/uartreceive.h)(0x5B596500)
+I (..\Templet_Fretros\functions/sort.h)(0x5B52D480)
+F (.\driverlib\rvmdk\driverlib.lib)(0x5B081C6B)()
+F (.\utils\uartstdio.c)(0x5B4B9081)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\uartstdio.o --omf_browse .\objects\uartstdio.crf --depend .\objects\uartstdio.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_uart.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+F (.\utils\buttons.c)(0x5B0D33B5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\buttons.o --omf_browse .\objects\buttons.crf --depend .\objects\buttons.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+F (.\Freetros\croutine.c)(0x5A185EC6)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\croutine.o --omf_browse .\objects\croutine.crf --depend .\objects\croutine.d)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (.\Freetros\include\croutine.h)(0x5A185EC7)
+F (.\Freetros\event_groups.c)(0x5A1C52B6)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\event_groups.o --omf_browse .\objects\event_groups.crf --depend .\objects\event_groups.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (.\Freetros\include\timers.h)(0x5A185ED0)
+I (.\Freetros\include\event_groups.h)(0x5A1C4918)
+F (.\Freetros\list.c)(0x5A185ED0)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\list.o --omf_browse .\objects\list.crf --depend .\objects\list.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+F (.\Freetros\queue.c)(0x5A185F07)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+F (.\Freetros\tasks.c)(0x5B388BFA)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\tasks.o --omf_browse .\objects\tasks.crf --depend .\objects\tasks.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (.\Freetros\include\timers.h)(0x5A185ED0)
+I (.\Freetros\include\stack_macros.h)(0x5A185ECC)
+F (.\Freetros\timers.c)(0x5A185F0D)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\timers.o --omf_browse .\objects\timers.crf --depend .\objects\timers.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\timers.h)(0x5A185ED0)
+F (.\Freetros\portable\MemMang\heap_4.c)(0x5A185EF5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\heap_4.o --omf_browse .\objects\heap_4.crf --depend .\objects\heap_4.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+F (.\Freetros\portable\RVDS\ARM_CM4F\port.c)(0x5B3F1625)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\port.o --omf_browse .\objects\port.crf --depend .\objects\port.d)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+F (.\functions\led_task.c)(0x5B4ED7D3)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\led_task.o --omf_browse .\objects\led_task.crf --depend .\objects\led_task.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+F (.\functions\uartprint.c)(0x5B52D1D8)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\uartprint.o --omf_browse .\objects\uartprint.crf --depend .\objects\uartprint.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\tim.c)(0x5B4BC8CC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\tim.o --omf_browse .\objects\tim.crf --depend .\objects\tim.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/timer.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/tim.h)(0x5B4341D3)
+F (.\functions\key.c)(0x5B52CDBF)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+I (..\Templet_Fretros\functions/key.h)(0x5B46068A)
+F (.\functions\ads1256.c)(0x5B4F75C5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\ads1256.o --omf_browse .\objects\ads1256.crf --depend .\objects\ads1256.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (..\Templet_Fretros\functions/key.h)(0x5B46068A)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/ads1256.h)(0x5B4B8C71)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\delay.c)(0x5B479013)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+F (.\functions\ad9959.c)(0x5B5097F4)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\ad9959.o --omf_browse .\objects\ad9959.crf --depend .\objects\ad9959.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/ad9959.h)(0x5B4B97A7)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\ads1115.c)(0x5B4F77FB)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\ads1115.o --omf_browse .\objects\ads1115.crf --depend .\objects\ads1115.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/ads1115.h)(0x5B4DD822)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\dac5618.c)(0x5B4F409D)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\dac5618.o --omf_browse .\objects\dac5618.crf --depend .\objects\dac5618.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/dac5618.h)(0x5B4DE964)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\dac8811.c)(0x5B50065B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\dac8811.o --omf_browse .\objects\dac8811.crf --depend .\objects\dac8811.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/dac8811.h)(0x5B4BC6CE)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\ads11152.c)(0x5B4F2DAA)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\ads11152.o --omf_browse .\objects\ads11152.crf --depend .\objects\ads11152.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/ads1115.h)(0x5B4DD822)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (..\Templet_Fretros\functions/ADS11152.h)(0x5B4DE37B)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\dac56182.c)(0x5B4F40C7)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\dac56182.o --omf_browse .\objects\dac56182.crf --depend .\objects\dac56182.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/DAC56182.h)(0x5B4DE96A)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\dac8501.c)(0x5B4F80A6)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\dac8501.o --omf_browse .\objects\dac8501.crf --depend .\objects\dac8501.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/dac8501.h)(0x5B4DF4C1)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+F (.\functions\fpga.c)(0x5B502673)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\fpga.o --omf_browse .\objects\fpga.crf --depend .\objects\fpga.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+I (..\Templet_Fretros\functions/fpga.h)(0x5B5014EC)
+F (.\functions\fpgadrawline.c)(0x5B5A78A3)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\fpgadrawline.o --omf_browse .\objects\fpgadrawline.crf --depend .\objects\fpgadrawline.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+I (..\Templet_Fretros\functions/uartreceive.h)(0x5B596500)
+I (..\Templet_Fretros\functions/fpgadrawline.h)(0x5B5044BD)
+F (.\functions\uartreceive.c)(0x5B59EACE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\uartreceive.o --omf_browse .\objects\uartreceive.crf --depend .\objects\uartreceive.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+I (..\Templet_Fretros\functions/delay.h)(0x5B479282)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+I (..\Templet_Fretros\functions/uartreceive.h)(0x5B596500)
+F (.\functions\sort.c)(0x5B5A8ADC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I..\Templet_Fretros -I.\Freetros\include -I.\Freetros\portable\RVDS\ARM_CM4F-I C:\Users\xxlei\Desktop\包含所有驱动总工程20180729\Templet_Fretros\RTE-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="514" -DTM4C1294NCPDT -DPART_TM4C1294NCPDT-o .\objects\sort.o --omf_browse .\objects\sort.crf --depend .\objects\sort.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
+I (..\Templet_Fretros\inc/hw_gpio.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_ints.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_memmap.h)(0x5B081C75)
+I (..\Templet_Fretros\inc/hw_types.h)(0x5B081C76)
+I (..\Templet_Fretros\inc/hw_nvic.h)(0x5B081C75)
+I (..\Templet_Fretros\driverlib/debug.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/fpu.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/gpio.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/interrupt.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/pin_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/rom_map.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/sysctl.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/systick.h)(0x5B081C6A)
+I (..\Templet_Fretros\driverlib/uart.h)(0x5B081C6A)
+I (..\Templet_Fretros\utils/uartstdio.h)(0x5B081C80)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (..\Templet_Fretros\utils/buttons.h)(0x5B0D338A)
+I (.\Freetros\include\FreeRTOSConfig.h)(0x5B4EC638)
+I (.\Freetros\include\FreeRTOS.h)(0x5A185EC8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (.\Freetros\include\projdefs.h)(0x5A1893D6)
+I (.\Freetros\include\portable.h)(0x5A185ECA)
+I (.\Freetros\include\deprecated_definitions.h)(0x5A185EC7)
+I (.\Freetros\portable\RVDS\ARM_CM4F\portmacro.h)(0x5A185F01)
+I (.\Freetros\include\mpu_wrappers.h)(0x5A185ECA)
+I (.\Freetros\include\queue.h)(0x5A185ECB)
+I (.\Freetros\include\task.h)(0x5A185ECF)
+I (.\Freetros\include\list.h)(0x5A185EC9)
+I (..\Templet_Fretros\functions/led_task.h)(0x5B442688)
+I (..\Templet_Fretros\functions/uartprint.h)(0x5B52CD71)
+I (..\Templet_Fretros\functions/uartreceive.h)(0x5B596500)
+I (..\Templet_Fretros\functions/sort.h)(0x5B52D480)

@@ -1,0 +1,12 @@
+.\objects\buttons.o: utils\buttons.c
+.\objects\buttons.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\buttons.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\buttons.o: ..\Templet_Fretros\inc/hw_types.h
+.\objects\buttons.o: ..\Templet_Fretros\inc/hw_memmap.h
+.\objects\buttons.o: ..\Templet_Fretros\inc/hw_gpio.h
+.\objects\buttons.o: ..\Templet_Fretros\driverlib/sysctl.h
+.\objects\buttons.o: ..\Templet_Fretros\driverlib/rom.h
+.\objects\buttons.o: ..\Templet_Fretros\driverlib/rom_map.h
+.\objects\buttons.o: ..\Templet_Fretros\driverlib/pin_map.h
+.\objects\buttons.o: ..\Templet_Fretros\driverlib/gpio.h
+.\objects\buttons.o: ..\Templet_Fretros\utils/buttons.h
